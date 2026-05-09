@@ -32,13 +32,13 @@ const Footer = () => {
             </p>
             
             <div className="space-y-6">
-              <a href="mailto:robotmb@gmail.com" onClick={handleCopyEmail} className="flex items-center gap-4 group cursor-pointer">
+              <a href="mailto:robotmb@gmail.com" className="flex items-center gap-4 group cursor-pointer">
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
                   <Mail size={20} className="group-hover:text-white transition-colors" />
                 </div>
                 <div>
                   <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase text-brand-purple">
-                    {copied ? 'COPIED!' : 'EMAIL'}
+                    EMAIL
                   </div>
                   <div className="text-sm font-medium text-white font-sans">robotmb@gmail.com</div>
                 </div>
@@ -70,28 +70,38 @@ const Footer = () => {
             viewport={{ once: true }}
             className="glass-card p-10 bg-brand-slate/20"
           >
-            <form className="space-y-6">
+            <form name="contact" method="POST" data-netlify="true" className="space-y-6">
+              <input type="hidden" name="form-name" value="contact" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">NAME</label>
+                  <label htmlFor="name" className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">NAME</label>
                   <input 
                     type="text" 
+                    id="name"
+                    name="name"
+                    required
                     placeholder="John Doe" 
                     className="w-full h-12 px-4 bg-brand-black border border-white/10 rounded-lg focus:outline-none focus:border-brand-purple transition-colors text-white text-sm"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">EMAIL</label>
+                  <label htmlFor="email" className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">EMAIL</label>
                   <input 
                     type="email" 
+                    id="email"
+                    name="email"
+                    required
                     placeholder="john@example.com" 
                     className="w-full h-12 px-4 bg-brand-black border border-white/10 rounded-lg focus:outline-none focus:border-brand-purple transition-colors text-white text-sm"
                   />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">MESSAGE</label>
+                <label htmlFor="message" className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">MESSAGE</label>
                 <textarea 
+                  id="message"
+                  name="message"
+                  required
                   rows={4} 
                   placeholder="How can we collaborate?" 
                   className="w-full px-4 py-3 bg-brand-black border border-white/10 rounded-lg focus:outline-none focus:border-brand-purple transition-colors text-white text-sm resize-none"

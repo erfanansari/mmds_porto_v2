@@ -22,7 +22,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="w-full"
         >
-          <div className="flex flex-col lg:flex-row items-center lg:items-end gap-10 mb-10">
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-10 mb-10 w-full">
             <div className="flex flex-col items-center lg:items-start">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.9] text-center lg:text-left">
                 MOHAMMAD <br className="hidden sm:block" /> 
@@ -46,22 +46,11 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="shrink-0"
             >
-              <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white/10 glow-purple bg-brand-slate/50 group">
+              <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white/10 glow-purple bg-brand-slate/50 group">
                 <img 
                   src={profileImg} 
                   alt="Mohammad Baghersad" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
-                    if (parent) {
-                      const fallback = document.createElement('div');
-                      fallback.className = 'w-full h-full flex items-center justify-center text-4xl font-bold text-white/5 font-mono';
-                      fallback.innerText = 'MB';
-                      parent.appendChild(fallback);
-                    }
-                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity duration-500" />
               </div>
