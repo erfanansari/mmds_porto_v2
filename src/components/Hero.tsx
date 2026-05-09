@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Linkedin, ChevronRight } from 'lucide-react';
+import profileImg from '../assets/profile.jpg';
 
 const Hero = () => {
   return (
@@ -47,7 +48,7 @@ const Hero = () => {
             >
               <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white/10 glow-purple bg-brand-slate/50 group">
                 <img 
-                  src="/profile.jpg" 
+                  src={profileImg} 
                   alt="Mohammad Baghersad" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   referrerPolicy="no-referrer"

@@ -1,7 +1,16 @@
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Github, Linkedin, Mail, GraduationCap, Send, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('robotmb@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -114,17 +123,6 @@ const Footer = () => {
             whileHover={{ y: -5 }}
             onClick={scrollToTop}
             className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-brand-silver/50 hover:text-white hover:border-white transition-all"
-          >
-            <ArrowUp size={18} />
-          </motion.button>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
-ansition-all"
           >
             <ArrowUp size={18} />
           </motion.button>
