@@ -23,12 +23,14 @@ const Footer = () => {
             </p>
             
             <div className="space-y-6">
-              <a href="mailto:robotmb@gmail.com" className="flex items-center gap-4 group">
+              <a href="mailto:robotmb@gmail.com" onClick={handleCopyEmail} className="flex items-center gap-4 group cursor-pointer">
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
                   <Mail size={20} className="group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">EMAIL</div>
+                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase text-brand-purple">
+                    {copied ? 'COPIED!' : 'EMAIL'}
+                  </div>
                   <div className="text-sm font-medium text-white font-sans">robotmb@gmail.com</div>
                 </div>
               </a>
@@ -112,6 +114,17 @@ const Footer = () => {
             whileHover={{ y: -5 }}
             onClick={scrollToTop}
             className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-brand-silver/50 hover:text-white hover:border-white transition-all"
+          >
+            <ArrowUp size={18} />
+          </motion.button>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+ansition-all"
           >
             <ArrowUp size={18} />
           </motion.button>
