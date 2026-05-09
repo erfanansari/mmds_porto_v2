@@ -1,0 +1,156 @@
+import { motion } from 'motion/react';
+import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck } from 'lucide-react';
+
+const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: string[], icon: any, key?: any }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="p-8 glass-card border-none bg-brand-slate/30 group hover:bg-brand-slate/50 transition-all duration-500"
+  >
+    <div className="w-12 h-12 rounded-xl bg-brand-purple/20 flex items-center justify-center mb-6 text-brand-purple-light group-hover:bg-brand-purple group-hover:text-white transition-all">
+      <Icon size={24} />
+    </div>
+    <h3 className="text-xl font-bold text-white mb-4 tracking-tight">{title}</h3>
+    <ul className="space-y-3">
+      {skills.map((skill, index) => (
+        <li key={index} className="flex items-center gap-2 text-sm text-brand-silver/60">
+          <div className="w-1 h-1 rounded-full bg-brand-purple-light" />
+          {skill}
+        </li>
+      ))}
+    </ul>
+  </motion.div>
+);
+
+const SkillsResearch = () => {
+  return (
+    <section id="skills" className="py-24 px-6 md:px-12 bg-brand-black/95 relative overflow-hidden">
+      {/* Decorative Orbs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-purple/10 rounded-full blur-[100px] -mr-48 -mt-48" />
+      
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24">
+          <div className="lg:col-span-1">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Capabilities</div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">Technical <br />Core</h2>
+              <p className="text-brand-silver/60 text-sm leading-relaxed mb-8">
+                Mastery of cross-disciplinary engineering principles, combining traditional mechanical engineering with modern AI and control systems.
+              </p>
+              
+              <div className="space-y-4 pt-6 border-t border-white/5">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center group-hover:border-brand-purple-light group-hover:text-brand-purple-light transition-all">
+                    <Zap size={18} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-white">SYSTEM INTEGRATION</div>
+                    <div className="text-[10px] text-brand-silver/40">Hardware-in-the-loop testing</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 group">
+                  <div className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center group-hover:border-brand-purple-light group-hover:text-brand-purple-light transition-all">
+                    <ShieldCheck size={18} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-white">RELIABILITY ENGINEERING</div>
+                    <div className="text-[10px] text-brand-silver/40">Fault-tolerant architecture</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <SkillCategory 
+              title="Robotics" 
+              icon={Settings} 
+              skills={["ROS / ROS2", "Kinematics & Dynamics", "Motion Planning", "Gazebo / Webots"]} 
+            />
+            <SkillCategory 
+              title="Control Systems" 
+              icon={Radio} 
+              skills={["MPC & Optimal Control", "PID / Kalmann Filters", "State Estimation", "MATLAB / Simulink"]} 
+            />
+            <SkillCategory 
+              title="AI & Vision" 
+              icon={Brain} 
+              skills={["Deep Learning (PyTorch)", "Point Cloud Processing", "Object Detection", "Sensor Fusion"]} 
+            />
+            <SkillCategory 
+              title="Embedded Systems" 
+              icon={Cpu} 
+              skills={["C / C++ / Python", "Real-time OS (RTOS)", "FPGA / Microcontrollers", "CAN / Ethernet Communication"]} 
+            />
+          </div>
+        </div>
+
+        {/* Research Section */}
+        <div id="research" className="pt-24 border-t border-white/5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative rounded-3xl overflow-hidden aspect-video group"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop" 
+                alt="Digital Circuit Architecture" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-brand-purple/40 mix-blend-overlay" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-black to-transparent opacity-80" />
+              
+              <div className="absolute bottom-8 left-8">
+                <div className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded text-[10px] uppercase tracking-widest text-white mb-2">
+                  Ongoing Study
+                </div>
+                <h4 className="text-xl font-bold text-white">High-Reliability Autonomous Perception</h4>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Research Focus</div>
+              <h2 className="text-3xl font-bold text-white mb-6 leading-tight">PhD Candidate: Resilience in Autonomous Systems</h2>
+              <div className="space-y-6 text-brand-silver/70 text-sm font-light leading-relaxed">
+                <p>
+                  My current research addresses the critical challenge of perception reliability in adverse weather conditions and edge cases. By developing novel ADAS algorithms that incorporate uncertainty quantification, I aim to bridge the gap between theoretical AI and production-ready safety systems.
+                </p>
+                <div className="p-6 bg-white/5 rounded-2xl border border-white/10 italic">
+                  "Toward inherently safe mechatronic architectures where failure is anticipated and mitigated through intelligent algorithmic redundancy."
+                </div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
+                  <li className="flex gap-3">
+                    <div className="shrink-0 w-5 h-5 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
+                      <Zap size={12} />
+                    </div>
+                    <span className="text-white text-xs font-medium">Real-time Optimization</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <div className="shrink-0 w-5 h-5 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
+                      <Brain size={12} />
+                    </div>
+                    <span className="text-white text-xs font-medium">Cognitive Control</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SkillsResearch;
