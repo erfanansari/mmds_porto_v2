@@ -26,11 +26,11 @@ export const projects: ProjectData[] = [
     filter: 'Embedded',
     description: 'Designed a high-precision liquid level monitoring system with real-time alerts and robust sensor calibration for industrial tanks.',
     shortDescription: 'Real-time liquid level sensing with STM32 and analog signal conditioning.',
-    image: 'https://images.unsplash.com/photo-1524650359799-008e63cde776?auto=format&fit=crop&w=1200&q=80',
+    image: '/src/assets/images/level-detector-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1524650359799-008e63cde776?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581091215367-27a28a888e4d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80'
+      '/src/assets/images/level-detector-1.jpg',
+      '/src/assets/images/level-detector-2.png',
+      '/src/assets/images/level-detector-3.png'
     ],
     githubUrl: 'https://github.com/robotmb/level-detector',
     tags: ['STM32', 'C', 'Sensor Calibration', 'Buzzer Alert'],
@@ -56,11 +56,11 @@ export const projects: ProjectData[] = [
     filter: 'Robotics',
     description: 'Built a 1:10 scale autonomous vehicle platform with lane keeping, obstacle detection, and low-latency path control.',
     shortDescription: 'Scaled autonomous driving platform with camera-based perception and motion control.',
-    image: 'https://images.unsplash.com/photo-1517308930190-766eed329f8d?auto=format&fit=crop&w=1200&q=80',
+    image: '/src/assets/images/autonomous-car-1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1517308930190-766eed329f8d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1523966211573-2b9b6c7a5f81?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&fit=crop&w=1200&q=80'
+      '/src/assets/images/autonomous-car-1.jpg',
+      '/src/assets/images/regenerated_image_1778319913919.png',
+      '/src/assets/images/regenerated_image_1778319934561.png'
     ],
     githubUrl: 'https://github.com/robotmb/autonomous-car-1-10',
     tags: ['ROS', 'OpenCV', 'PID', 'Path Planning'],
