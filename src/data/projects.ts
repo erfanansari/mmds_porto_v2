@@ -26,11 +26,11 @@ export const projects: ProjectData[] = [
     filter: 'Embedded',
     description: 'Designed a high-precision liquid level monitoring system with real-time alerts and robust sensor calibration for industrial tanks.',
     shortDescription: 'Real-time liquid level sensing with STM32 and analog signal conditioning.',
-    image: '/src/assets/images/level-detector-1.jpg',
+    image: '/images/level-detector-1.jpg',
     images: [
-      '/src/assets/images/level-detector-1.jpg',
-      '/src/assets/images/level-detector-2.png',
-      '/src/assets/images/level-detector-3.png'
+      '/images/level-detector-1.jpg',
+      '/images/level-detector-2.png',
+      '/images/level-detector-3.png'
     ],
     githubUrl: 'https://github.com/robotmb/level-detector',
     tags: ['STM32', 'C', 'Sensor Calibration', 'Buzzer Alert'],
@@ -56,11 +56,11 @@ export const projects: ProjectData[] = [
     filter: 'Robotics',
     description: 'Built a 1:10 scale autonomous vehicle platform with lane keeping, obstacle detection, and low-latency path control.',
     shortDescription: 'Scaled autonomous driving platform with camera-based perception and motion control.',
-    image: '/src/assets/images/autonomous-car-1.jpg',
+    image: '/images/autonomous-car-1.jpg',
     images: [
-      '/src/assets/images/autonomous-car-1.jpg',
-      '/src/assets/images/regenerated_image_1778319913919.png',
-      '/src/assets/images/regenerated_image_1778319934561.png'
+      '/images/autonomous-car-1.jpg',
+      '/images/regenerated_image_1778319913919.png',
+      '/images/regenerated_image_1778319934561.png'
     ],
     githubUrl: 'https://github.com/robotmb/autonomous-car-1-10',
     tags: ['ROS', 'OpenCV', 'PID', 'Path Planning'],
