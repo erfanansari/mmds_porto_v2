@@ -133,7 +133,7 @@ const ProjectGallery = ({ onProjectSelect }: { onProjectSelect: (id: number, slu
             "Precision in design, innovation in motion."
           </p>
           <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-brand-silver/30">
-            <span>VERSION 2.0.4</span>
+            <span>VERSION 2.0.5</span>
             <div className="w-1 h-1 rounded-full bg-brand-purple" />
             <span>LAST UPDATE: MAY 2026</span>
           </div>
