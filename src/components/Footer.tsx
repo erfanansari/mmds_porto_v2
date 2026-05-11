@@ -119,14 +119,20 @@ const Footer = () => {
         </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="w-8 h-8 rounded bg-brand-purple flex items-center justify-center font-bold text-sm">MB</div>
-            <span className="text-[10px] font-mono tracking-widest text-brand-silver/40">© 2026 MOHAMMAD BAGHERSAD</span>
+            <div>
+              <div className="text-[10px] font-mono tracking-widest text-brand-silver/40">© 2026 MOHAMMAD BAGHERSAD</div>
+              <div className="text-[10px] text-brand-silver/50">Engineering portfolio for robotics, embedded systems, and control applications.</div>
+            </div>
           </div>
 
-          <div className="flex gap-8">
+          <div className="flex flex-wrap items-center gap-4">
             <a href="https://github.com" className="text-brand-silver/50 hover:text-white transition-colors"><Github size={18} /></a>
             <a href="https://www.linkedin.com/in/mohammad-baghersad/" className="text-brand-silver/50 hover:text-white transition-colors"><Linkedin size={18} /></a>
+            <a href="/CV-Mohammad-Baghersad.pdf" download className="rounded-full border border-white/10 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-brand-silver/60 hover:text-white hover:border-brand-purple transition-all">
+              Download CV
+            </a>
           </div>
 
           <motion.button

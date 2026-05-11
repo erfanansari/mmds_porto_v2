@@ -13,18 +13,26 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-brand-black text-brand-silver font-sans selection:bg-brand-purple-light/30;
+  }
+
+  * {
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-brand-slate/50 backdrop-blur-md border border-white/10 rounded-2xl;
+    @apply bg-brand-slate/55 backdrop-blur-xl border border-white/10 rounded-3xl;
   }
   
   .glow-purple {
-    box-shadow: 0 0 20px rgba(75, 0, 130, 0.2);
+    box-shadow: 0 0 20px rgba(75, 0, 130, 0.24);
   }
   
   .btn-primary {

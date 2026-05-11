@@ -1,156 +1,133 @@
+import { useMemo, useState } from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Github, Play, FileText } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
+import { ProjectData, projects } from '../data/projects';
 
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  videoUrl?: string;
-  githubUrl?: string;
-  docUrl?: string;
-  tags: string[];
-}
+const filterOptions = ['All', 'Robotics', 'Control', 'Embedded', 'Vision'];
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Autonomous Lane Keeping System",
-    category: "ADAS / Computer Vision",
-    description: "Developed a deep learning-based lane detection and path planning algorithm for highway environments using sensor fusion of camera and Radar.",
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2000&auto=format&fit=crop",
-    githubUrl: "https://github.com",
-    docUrl: "#",
-    tags: ["PyTorch", "C++", "OpenCV", "Control Theory"]
-  },
-  {
-    id: 2,
-    title: "6-DOF Robotic Manipulator",
-    category: "Robotics / Control",
-    description: "Implementation of inverse kinematics and trajectory optimization for high-precision robotic assembly tasks. Integrated with ROS and Gazebo simulations.",
-    image: "/src/assets/images/regenerated_image_1778319913919.png",
-    githubUrl: "https://github.com",
-    tags: ["ROS", "Python", "Kinematics", "URDF"]
-  },
-  {
-    id: 3,
-    title: "Sensor Fusion: LiDAR & Radar",
-    category: "Perception / AI",
-    description: "Real-time object tracking and obstacle detection using Extended Kalman Filters (EKF) and point cloud processing for ADAS Level 3 autonomy.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop",
-    githubUrl: "https://github.com",
-    videoUrl: "#",
-    tags: ["C++", "LiDAR", "EKF", "Unreal Engine"]
-  },
-  {
-    id: 4,
-    title: "UAV Dynamic Path Planning",
-    category: "Mechatronics / Research",
-    description: "Bio-inspired collision avoidance algorithms for quadcopters in dense urban environments. Optimized for low-power embedded systems.",
-    image: "/src/assets/images/regenerated_image_1778319934561.png",
-    docUrl: "#",
-    tags: ["MATLAB", "Embedded C", "Fluid Dynamics", "IoT"]
-  }
-];
-
-const ProjectCard = ({ project, index }: { project: Project, index: number, key?: any }) => {
+const ProjectCard = ({
+  project,
+  index,
+  onSelect
+}: {
+  project: ProjectData;
+  index: number;
+  onSelect: (id: number, slug: string) => void;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
-      className="group relative glass-card overflow-hidden"
+      transition={{ delay: index * 0.08, duration: 0.5 }}
+      className="group relative glass-card overflow-hidden border-white/10 hover:border-brand-purple-light shadow-lg shadow-black/20 transition-all"
     >
       <div className="aspect-video overflow-hidden">
-        <img 
-          src={project.image} 
+        <img
+          src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100"
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/20 to-transparent opacity-90" />
-      </div>
-
-      <div className="absolute top-4 right-4 flex gap-2">
-        {project.videoUrl && (
-          <button className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-brand-purple transition-colors">
-            <Play size={14} fill="white" />
-          </button>
-        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-transparent" />
       </div>
 
       <div className="p-6 relative">
-        <div className="text-[10px] uppercase tracking-[2px] font-mono text-brand-purple-light mb-2 font-bold">
-          {project.category}
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <span className="text-[10px] uppercase tracking-[0.35em] font-mono text-brand-purple-light font-bold">
+            {project.category}
+          </span>
+          <span className="text-[10px] uppercase px-2 py-1 bg-white/5 border border-white/10 rounded-full text-brand-silver/70">
+            {project.filter}
+          </span>
         </div>
-        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-purple-light transition-colors">
+        <h3 className="text-2xl font-bold text-white mb-4 transition-colors group-hover:text-brand-purple-light">
           {project.title}
         </h3>
-        <p className="text-sm text-brand-silver/60 mb-6 line-clamp-2 font-light">
-          {project.description}
+        <p className="text-sm text-brand-silver/70 mb-6 leading-relaxed min-h-[3.5rem]">
+          {project.shortDescription}
         </p>
 
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags.map(tag => (
-            <span key={tag} className="text-[10px] px-2 py-0.5 border border-white/10 rounded uppercase tracking-wider text-brand-silver/40">
+          {project.tags.slice(0, 4).map((tag) => (
+            <span key={tag} className="text-[10px] px-2 py-1 border border-white/10 rounded-full uppercase tracking-wider text-brand-silver/40 bg-white/5">
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="flex items-center gap-4 pt-4 border-t border-white/5">
-          {project.githubUrl && (
-            <a href={project.githubUrl} className="text-brand-silver/70 hover:text-white flex items-center gap-2 text-xs transition-colors">
-              <Github size={14} /> Code
-            </a>
-          )}
-          {project.docUrl && (
-            <a href={project.docUrl} className="text-brand-silver/70 hover:text-white flex items-center gap-2 text-xs transition-colors">
-              <FileText size={14} /> Documentation
-            </a>
-          )}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-white/10">
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-brand-silver/80 hover:text-white transition-colors"
+          >
+            <Github size={16} /> GitHub
+          </a>
+          <button
+            onClick={() => onSelect(project.id, project.slug)}
+            className="inline-flex items-center justify-center rounded-full border border-brand-purple-light bg-brand-purple/90 px-4 py-2 text-sm text-white transition-all hover:bg-brand-purple-light"
+          >
+            View Details
+            <ExternalLink size={16} />
+          </button>
         </div>
       </div>
     </motion.div>
   );
 };
 
-const ProjectGallery = () => {
+const ProjectGallery = ({ onProjectSelect }: { onProjectSelect: (id: number, slug: string) => void }) => {
+  const [filter, setFilter] = useState('All');
+
+  const visibleProjects = useMemo(
+    () => projects.filter((project) => filter === 'All' || project.filter === filter),
+    [filter]
+  );
+
   return (
     <section id="projects" className="py-24 px-6 md:px-12 bg-brand-black">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between mb-10">
+          <div>
             <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Featured Work</div>
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Engineering Portfolio</h2>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="md:text-right text-brand-silver/50 max-w-sm text-sm"
-          >
-            Showcasing integrated systems, ADAS algorithms, and experimental robotics prototypes developed during academic and professional career.
-          </motion.div>
+          </div>
+          <p className="max-w-xl text-sm text-brand-silver/60 leading-relaxed">
+            Eight professional robotics and mechatronics systems showcasing embedded design, control engineering, and computer vision applied to real prototypes.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+        <div className="flex flex-wrap gap-3 mb-12">
+          {filterOptions.map((item) => (
+            <button
+              key={item}
+              onClick={() => setFilter(item)}
+              className={`rounded-full px-4 py-2 text-xs uppercase tracking-widest transition-all ${
+                filter === item
+                  ? 'bg-brand-purple text-white shadow-lg shadow-brand-purple/20'
+                  : 'bg-white/5 text-brand-silver/70 hover:bg-white/10'
+              }`}
+            >
+              {item}
+            </button>
           ))}
         </div>
 
-        <motion.div 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {visibleProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} onSelect={onProjectSelect} />
+          ))}
+        </div>
+
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-20 py-12 border-y border-white/5 flex flex-col items-center text-center"
+          className="mt-20 py-12 border-t border-white/5 flex flex-col items-center text-center"
         >
           <p className="text-brand-silver/60 mb-6 text-sm italic">
             "Precision in design, innovation in motion."
