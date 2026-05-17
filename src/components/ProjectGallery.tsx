@@ -22,13 +22,13 @@ const ProjectCard = ({
       transition={{ delay: index * 0.08, duration: 0.5 }}
       className="group relative glass-card overflow-hidden border-white/10 hover:border-brand-purple-light shadow-lg shadow-black/20 transition-all"
     >
-      <div className="aspect-video overflow-hidden">
+      <div className="project-card-frame aspect-video overflow-hidden rounded-[1.75rem] border-b border-white/10 bg-brand-slate/10">
         <img
           src={project.image}
           alt={project.title}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="project-cover group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-transparent" />

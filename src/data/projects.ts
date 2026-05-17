@@ -1,3 +1,5 @@
+import { projectImages } from './projectImages';
+
 export interface ProjectData {
   id: number;
   slug: string;
@@ -26,12 +28,8 @@ export const projects: ProjectData[] = [
     filter: 'Embedded',
     description: 'Designed a high-precision liquid level monitoring system with real-time alerts and robust sensor calibration for industrial tanks.',
     shortDescription: 'Real-time liquid level sensing with STM32 and analog signal conditioning.',
-    image: '/images/level-detector-1.jpg',
-    images: [
-      '/images/level-detector-1.jpg',
-      '/images/level-detector-2.png',
-      '/images/level-detector-3.png'
-    ],
+    image: projectImages.levelDetector[0],
+    images: projectImages.levelDetector,
     githubUrl: 'https://github.com/robotmb/level-detector',
     tags: ['STM32', 'C', 'Sensor Calibration', 'Buzzer Alert'],
     hardware: ['STM32 MCU', 'Ultrasonic and capacitive sensors', 'OLED display', 'Industrial relay'],
@@ -56,12 +54,8 @@ export const projects: ProjectData[] = [
     filter: 'Robotics',
     description: 'Built a 1:10 scale autonomous vehicle platform with lane keeping, obstacle detection, and low-latency path control.',
     shortDescription: 'Scaled autonomous driving platform with camera-based perception and motion control.',
-    image: '/images/autonomous-car-1.jpg',
-    images: [
-      '/images/autonomous-car-1.jpg',
-      '/images/regenerated_image_1778319913919.png',
-      '/images/regenerated_image_1778319934561.png'
-    ],
+    image: projectImages.autonomousCar[0],
+    images: projectImages.autonomousCar,
     githubUrl: 'https://github.com/robotmb/autonomous-car-1-10',
     tags: ['ROS', 'OpenCV', 'PID', 'Path Planning'],
     hardware: ['Raspberry Pi', 'Stereo camera', 'Motor driver board', 'IMU sensor'],
@@ -86,12 +80,8 @@ export const projects: ProjectData[] = [
     filter: 'Robotics',
     description: 'Delivered a compact maze-solving robot using edge detection, line following, and search-based path planning.',
     shortDescription: 'Autonomous maze navigation with sensor fusion and strategy optimization.',
-    image: 'https://images.unsplash.com/photo-1531281959556-1be3b3180ec6?auto=format&fit=crop&w=1200&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1531281959556-1be3b3180ec6?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1517971071642-34a2adacf6d4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&w=1200&q=80'
-    ],
+    image: projectImages.mazeSolver[0],
+    images: projectImages.mazeSolver,
     githubUrl: 'https://github.com/robotmb/maze-solver-robot',
     tags: ['SLAM', 'ARM Cortex', 'Path Search', 'Real-time'],
     hardware: ['ARM Cortex-M4', 'LiDAR distance sensor', 'Wheel encoders', 'IR line sensors'],
@@ -116,12 +106,8 @@ export const projects: ProjectData[] = [
     filter: 'Control',
     description: 'Implemented a high-bandwidth ball and plate control prototype with precise state estimation and active stabilization.',
     shortDescription: 'Precision plate control using real-time feedback and robust PID/LQR algorithms.',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1616610971206-a3b0f6ddcca8?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504805572947-34fad45aed93?auto=format&fit=crop&w=1200&q=80'
-    ],
+    image: projectImages.ballAndPlate[0],
+    images: projectImages.ballAndPlate,
     githubUrl: 'https://github.com/robotmb/ball-and-plate-control',
     tags: ['LQR', 'MATLAB', 'State Estimation', 'Actuators'],
     hardware: ['Servo actuators', 'Optical position sensors', 'STM32 control board', 'Aluminum plate'],
@@ -146,12 +132,8 @@ export const projects: ProjectData[] = [
     filter: 'Embedded',
     description: 'Created a secure, automated vending kiosk with product selection, payment validation, and motor actuation.',
     shortDescription: 'Embedded vending automation with modular payment and dispensing control.',
-    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80'
-    ],
+    image: projectImages.vendingMachine[0],
+    images: projectImages.vendingMachine,
     githubUrl: 'https://github.com/robotmb/vending-machine',
     tags: ['PLC', 'C++', 'HMI', 'Stepper Motor'],
     hardware: ['Microcontroller controller', 'Keypad & TFT display', 'Stepper motors', 'Weight sensor'],
@@ -176,12 +158,8 @@ export const projects: ProjectData[] = [
     filter: 'Vision',
     description: 'Developed an autonomous soccer robot with vision-based ball tracking, opponent avoidance, and goal-directed motion control.',
     shortDescription: 'Vision-guided robot for competitive soccer behavior and fast target capture.',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80'
-    ],
+    image: projectImages.soccerRobot[0],
+    images: projectImages.soccerRobot,
     githubUrl: 'https://github.com/robotmb/soccer-player-robot',
     tags: ['OpenCV', 'Strategy', 'Embedded', 'PID'],
     hardware: ['Raspberry Pi', 'RGB camera', 'Motor controller', 'High-torque servos'],
@@ -206,12 +184,8 @@ export const projects: ProjectData[] = [
     filter: 'Control',
     description: 'Engineered a two-wheel self-balancing prototype with IMU fusion and adaptive PID control for stable upright motion.',
     shortDescription: 'IMU-driven balancing robot with fast closed-loop stabilization.',
-    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1200&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1451187164391-0fa1b4a7b7bc?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80'
-    ],
+    image: projectImages.selfBalancing[0],
+    images: projectImages.selfBalancing,
     githubUrl: 'https://github.com/robotmb/self-balancing-robot',
     tags: ['IMU Fusion', 'PID', 'C', 'Motor Control'],
     hardware: ['MPU6050 IMU', 'DC motors', 'Motor driver', 'Lithium battery'],
@@ -236,12 +210,8 @@ export const projects: ProjectData[] = [
     filter: 'Control',
     description: 'Developed an inverted pendulum experimental rig using state feedback control and rapid actuation to maintain upright stability.',
     shortDescription: 'State-space inverted pendulum controller with rapid stabilization.',
-    image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e61?auto=format&fit=crop&w=1200&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1517256064527-09c73fc73e61?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1517456793577-06b6f1b1c2ca?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1545239766-1b2c45d6d893?auto=format&fit=crop&w=1200&q=80'
-    ],
+    image: projectImages.invertedPendulum[0],
+    images: projectImages.invertedPendulum,
     githubUrl: 'https://github.com/robotmb/inverted-pendulum',
     tags: ['LQR', 'State Feedback', 'MATLAB', 'Dynamics'],
     hardware: ['DC motor actuation', 'Encoder feedback', 'Real-time controller', 'Aluminum arm'],

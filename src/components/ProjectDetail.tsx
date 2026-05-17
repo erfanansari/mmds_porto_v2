@@ -8,6 +8,10 @@ interface ProjectDetailProps {
 }
 
 const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
+  const detailImages = project.images.length ? project.images : [project.image];
+  const gridImages = detailImages.slice(0, Math.min(2, detailImages.length));
+  const mainImage = detailImages.length > 2 ? detailImages[2] : detailImages[detailImages.length - 1];
+
   return (
     <section className="min-h-screen bg-brand-black text-brand-silver px-6 md:px-12 py-28">
       <div className="max-w-6xl mx-auto">
@@ -46,15 +50,24 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             className="space-y-6"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {project.images.slice(0, 2).map((src, index) => (
-                <div key={src} className="rounded-3xl overflow-hidden border border-white/10 shadow-xl shadow-black/20">
-                  <img src={src} alt={`${project.title} screenshot ${index + 1}`} className="w-full h-72 object-cover" loading="lazy" decoding="async" />
+              {gridImages.map((src, index) => (
+                <div key={src} className="project-card-frame">
+                  <img src={src} alt={`${project.title} screenshot ${index + 1}`} className="project-cover hover:scale-105" loading="lazy" decoding="async" />
                 </div>
               ))}
             </div>
-            <div className="rounded-3xl overflow-hidden border border-white/10 shadow-xl shadow-black/20">
-              <img src={project.images[2]} alt={`${project.title} main view`} className="w-full h-[420px] object-cover" loading="lazy" decoding="async" />
+            <div className="project-card-frame">
+              <img src={mainImage} alt={`${project.title} main view`} className="project-cover hover:scale-105 h-[420px]" loading="lazy" decoding="async" />
             </div>
+            {detailImages.length > 3 && (
+              <div className="grid grid-cols-1 gap-6">
+                {detailImages.slice(3).map((src, index) => (
+                  <div key={src} className="project-card-frame">
+                    <img src={src} alt={`${project.title} extra screenshot ${index + 4}`} className="project-cover hover:scale-105 h-72" loading="lazy" decoding="async" />
+                  </div>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           <motion.div
