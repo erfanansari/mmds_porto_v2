@@ -228,4 +228,29 @@ export const projects: ProjectData[] = [
     ],
     technical: 'The inverted pendulum rig uses real-time encoder feedback and a state-space controller to keep the payload upright. Controller gains were derived from a linearized model and validated through iterative testing against disturbance inputs.'
   }
+  ,
+  {
+    id: 9,
+    slug: 'revinder',
+    title: 'Revinder',
+    category: 'Manufacturing',
+    filter: 'Automation',
+    description: 'Prototype machine for producing copper rope with controlled winding and processing.',
+    shortDescription: 'Copper rope manufacturing prototype.',
+    image: projectImages.revider[0],
+    images: projectImages.revider,
+    githubUrl: 'https://github.com/mmd-bsd',
+    tags: ['Mechanical', 'Automation', 'Winding'],
+    hardware: ['Stepper motors', 'Winding spindle', 'Tension sensors'],
+    software: ['Embedded controller', 'PID tension control'],
+    challenges: [
+      'Controlling tension during high-speed winding.',
+      'Ensuring uniform copper strand alignment for consistent rope quality.'
+    ],
+    results: [
+      'Functional prototype producing short copper rope samples.',
+      'Demonstrated repeatable tension control across runs.'
+    ],
+    technical: 'This project focuses on precision mechanical winding and tension control to form copper rope. The prototype integrates motor control, tension sensing, and a feed mechanism to produce consistent wire bundles for subsequent processing.'
+  }
 ];
