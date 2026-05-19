@@ -128,7 +128,7 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <a href="https://github.com" className="text-brand-silver/50 hover:text-white transition-colors"><Github size={18} /></a>
+            <a href="https://github.com/mmd-bsd" className="text-brand-silver/50 hover:text-white transition-colors"><Github size={18} /></a>
             <a href="https://www.linkedin.com/in/mohammad-baghersad/" className="text-brand-silver/50 hover:text-white transition-colors"><Linkedin size={18} /></a>
             <a href="/CV-Mohammad-Baghersad.pdf" download className="rounded-full border border-white/10 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-brand-silver/60 hover:text-white hover:border-brand-purple transition-all">
               Download CV
