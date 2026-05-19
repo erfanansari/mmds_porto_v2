@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Linkedin, ChevronRight, DownloadCloud } from 'lucide-react';
-import profileImg from '../assets/profile.jpg';
+import profileImg from '../assets/profile.webp';
 
 const Hero = () => {
   return (

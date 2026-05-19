@@ -45,7 +45,7 @@ const Header = () => {
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-2xl overflow-hidden border border-brand-purple-light/30 glow-purple flex items-center justify-center bg-brand-purple">
             <img
-              src="/profile.jpg"
+              src="/profile.webp"
               alt="Mohammad Baghersad"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"

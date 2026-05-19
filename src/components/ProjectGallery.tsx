@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { ExternalLink, Github } from 'lucide-react';
 import { ProjectData, projects } from '../data/projects';
 
-const filterOptions = ['All', 'Robotics', 'Control', 'Embedded', 'Vision'];
+const filterOptions = ['All', 'Robotics', 'Control', 'Embedded', 'Vision', 'Automation'];
 
 const ProjectCard = ({
   project,
@@ -97,7 +97,7 @@ const ProjectGallery = ({ onProjectSelect }: { onProjectSelect: (id: number, slu
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Engineering Portfolio</h2>
           </div>
           <p className="max-w-xl text-sm text-brand-silver/60 leading-relaxed">
-            Eight professional robotics and mechatronics systems showcasing embedded design, control engineering, and computer vision applied to real prototypes.
+            Professional robotics, mechatronics, and manufacturing projects showcasing embedded design, control engineering, and applied automation prototypes.
           </p>
         </div>
 
