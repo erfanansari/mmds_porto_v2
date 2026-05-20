@@ -90,62 +90,16 @@ const SkillsResearch = () => {
           </div>
         </div>
 
-        {/* Research Section */}
-        <div id="research" className="pt-24 border-t border-white/5">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden aspect-video group"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop" 
-                alt="Digital Circuit Architecture" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-brand-purple/40 mix-blend-overlay" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black to-transparent opacity-80" />
-              
-              <div className="absolute bottom-8 left-8">
-                <div className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded text-[10px] uppercase tracking-widest text-white mb-2">
-                  Ongoing Study
-                </div>
-                <h4 className="text-xl font-bold text-white">High-Reliability Autonomous Perception</h4>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Research Focus</div>
-              <h2 className="text-3xl font-bold text-white mb-6 leading-tight">PhD Candidate: Resilience in Autonomous Systems</h2>
-              <div className="space-y-6 text-brand-silver/70 text-sm font-light leading-relaxed">
-                <p>
-                  My current research addresses the critical challenge of perception reliability in adverse weather conditions and edge cases. By developing novel ADAS algorithms that incorporate uncertainty quantification, I aim to bridge the gap between theoretical AI and production-ready safety systems.
-                </p>
-                <div className="p-6 bg-white/5 rounded-2xl border border-white/10 italic">
-                  "Toward inherently safe mechatronic architectures where failure is anticipated and mitigated through intelligent algorithmic redundancy."
-                </div>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
-                  <li className="flex gap-3">
-                    <div className="shrink-0 w-5 h-5 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
-                      <Zap size={12} />
-                    </div>
-                    <span className="text-white text-xs font-medium">Real-time Optimization</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <div className="shrink-0 w-5 h-5 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
-                      <Brain size={12} />
-                    </div>
-                    <span className="text-white text-xs font-medium">Cognitive Control</span>
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
+        {/* Education Section */}
+        <div id="education" className="pt-24 border-t border-white/5">
+          <div className="max-w-3xl">
+            <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Education</div>
+            <h2 className="text-3xl font-bold text-white mb-6 leading-tight">Academic Background in Engineering</h2>
+            <div className="space-y-6 text-brand-silver/70 text-sm font-light leading-relaxed">
+              <p>Bachelor’s degree in Mechanical Engineering from University of Isfahan.</p>
+              <p>Master’s degree in Mechatronics from Shahid Beheshti University.</p>
+              <p>PhD candidate in Mechatronics at University of Tehran.</p>
+            </div>
           </div>
         </div>
       </div>

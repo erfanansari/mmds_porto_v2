@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
+import { Github, Linkedin, Mail, Menu, X, Moon, Sun } from 'lucide-react';
 
 const navItems = [
   { label: 'ABOUT', href: '#about' },
@@ -10,7 +10,7 @@ const navItems = [
   { label: 'CONTACT', href: '#contact' }
 ];
 
-const Header = () => {
+const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeToggle: () => void }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
 
@@ -85,6 +85,14 @@ const Header = () => {
           <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Linkedin size={18} />
           </a>
+          <button
+            onClick={onThemeToggle}
+            className="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-brand-silver/70 hover:text-white transition-colors"
+            aria-label="Toggle theme"
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
           <a href="mailto:robotmb@gmail.com" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Mail size={18} />
           </a>

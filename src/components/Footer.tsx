@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, GraduationCap, Send, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Send, ArrowUp, Phone, MessageSquare } from 'lucide-react';
 
 const Footer = () => {
   const [copied, setCopied] = useState(false);
@@ -41,6 +41,24 @@ const Footer = () => {
                     EMAIL
                   </div>
                   <div className="text-sm font-medium text-white font-sans">robotmb@gmail.com</div>
+                </div>
+              </a>
+              <a href="tel:+989136399987" className="flex items-center gap-4 group cursor-pointer">
+                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
+                  <Phone size={20} className="group-hover:text-white transition-colors" />
+                </div>
+                <div>
+                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">PHONE</div>
+                  <div className="text-sm font-medium text-white">+98-9136399987</div>
+                </div>
+              </a>
+              <a href="https://t.me/mmdba" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
+                  <MessageSquare size={20} className="group-hover:text-white transition-colors" />
+                </div>
+                <div>
+                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">TELEGRAM</div>
+                  <div className="text-sm font-medium text-white">@mmdba</div>
                 </div>
               </a>
               <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">

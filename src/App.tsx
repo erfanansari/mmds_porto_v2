@@ -14,6 +14,17 @@ import { projects } from './data/projects';
 
 export default function App() {
   const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window === 'undefined') return 'dark';
+    const stored = window.localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('theme', theme);
+  }, [theme]);
 
   const selectedProject = useMemo(
     () => projects.find((project) => project.id === activeProjectId) ?? null,
@@ -48,7 +59,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-brand-black text-brand-silver selection:bg-brand-purple/40">
-      <Header />
+      <Header theme={theme} onThemeToggle={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))} />
       <main>
         <Hero />
         {selectedProject ? (

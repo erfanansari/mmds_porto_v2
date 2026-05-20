@@ -17,6 +17,14 @@
     scroll-behavior: smooth;
   }
 
+  html[data-theme='light'] {
+    --color-brand-black: #f8fafc;
+    --color-brand-slate: #e2e8f0;
+    --color-brand-silver: #0f172a;
+    --color-brand-purple: #5b21b6;
+    --color-brand-purple-light: #7c3aed;
+  }
+
   body {
     @apply bg-brand-black text-brand-silver font-sans selection:bg-brand-purple-light/30;
   }
