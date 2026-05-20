@@ -6,7 +6,7 @@ const navItems = [
   { label: 'ABOUT', href: '#about' },
   { label: 'PROJECTS', href: '#projects' },
   { label: 'SKILLS', href: '#skills' },
-  { label: 'RESEARCH', href: '#research' },
+  { label: 'EDUCATIONS', href: '#education' },
   { label: 'CONTACT', href: '#contact' }
 ];
 
@@ -20,10 +20,18 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
     const updateActiveSection = () => {
       const scrollPos = window.scrollY + 120;
       let current = 'about';
+      let closestDistance = Infinity;
 
       sections.forEach((section, index) => {
-        if (section && section.getBoundingClientRect().top + window.scrollY <= scrollPos) {
-          current = navItems[index].label.toLowerCase();
+        if (section) {
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          if (sectionTop <= scrollPos) {
+            const distance = scrollPos - sectionTop;
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              current = navItems[index].label.toLowerCase();
+            }
+          }
         }
       });
 
@@ -52,7 +60,12 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const parent = e.currentTarget.parentElement;
-                if (parent) parent.textContent = 'MB';
+                if (parent) {
+                  parent.textContent = 'MB';
+                  parent.style.color = 'white';
+                  parent.style.fontSize = '0.875rem';
+                  parent.style.fontWeight = 'bold';
+                }
               }}
             />
           </div>
