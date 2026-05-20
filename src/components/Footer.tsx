@@ -27,9 +27,6 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">Stay Connected</h2>
-            <p className="text-brand-silver/60 mb-12 max-w-md font-light leading-relaxed">
-              Open to collaborative research, consulting opportunities, or technical discussions regarding the future of ADAS and Mechatronics.
-            </p>
             
             <div className="space-y-6">
               <a href="mailto:robotmb@gmail.com" className="flex items-center gap-4 group cursor-pointer">

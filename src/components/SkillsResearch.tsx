@@ -91,16 +91,39 @@ const SkillsResearch = () => {
         </div>
 
         {/* Education Section */}
-        <div id="education" className="pt-24 border-t border-white/5">
-          <div className="max-w-3xl">
-            <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Education</div>
-            <h2 className="text-3xl font-bold text-white mb-6 leading-tight">Academic Background in Engineering</h2>
-            <div className="space-y-6 text-brand-silver/70 text-sm font-light leading-relaxed">
-              <p>Bachelor’s degree in Mechanical Engineering from University of Isfahan.</p>
-              <p>Master’s degree in Mechatronics from Shahid Beheshti University.</p>
-              <p>PhD candidate in Mechatronics at University of Tehran.</p>
+        <div id="education" className="pt-24 border-t border-white/5 -mx-6 md:-mx-12 px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-brand-purple/15 border border-brand-purple/30 p-10 rounded-3xl backdrop-blur-sm"
+          >
+            <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-4">Education</div>
+            <h2 className="text-3xl font-bold text-white mb-8 leading-tight">Academic Background in Engineering</h2>
+            <div className="space-y-6">
+              <div className="flex gap-4 items-start">
+                <div className="shrink-0 w-10 h-10 rounded-lg bg-brand-purple/30 flex items-center justify-center text-brand-purple-light font-bold">i</div>
+                <div>
+                  <p className="text-white font-semibold mb-1">Bachelor's Degree</p>
+                  <p className="text-brand-silver/70 text-sm font-light">Mechanical Engineering - University of Isfahan</p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <div className="shrink-0 w-10 h-10 rounded-lg bg-brand-purple/30 flex items-center justify-center text-brand-purple-light font-bold">ii</div>
+                <div>
+                  <p className="text-white font-semibold mb-1">Master Degree</p>
+                  <p className="text-brand-silver/70 text-sm font-light">Mechatronics - Shahid Beheshti University</p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <div className="shrink-0 w-10 h-10 rounded-lg bg-brand-purple/30 flex items-center justify-center text-brand-purple-light font-bold">iii</div>
+                <div>
+                  <p className="text-white font-semibold mb-1">PhD Candidate</p>
+                  <p className="text-brand-silver/70 text-sm font-light">Mechatronics - University of Tehran</p>
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

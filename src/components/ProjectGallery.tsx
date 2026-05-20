@@ -69,7 +69,7 @@ const ProjectCard = ({
           </a>
           <button
             onClick={() => onSelect(project.id, project.slug)}
-            className="inline-flex items-center justify-center rounded-full border border-brand-purple-light bg-brand-purple/90 px-4 py-2 text-sm text-white transition-all hover:bg-brand-purple-light"
+            className="inline-flex items-center justify-center rounded-full border border-brand-purple-light bg-brand-purple/90 px-4 py-2 text-sm text-white force-white transition-all hover:bg-brand-purple-light"
           >
             View Details
             <ExternalLink size={16} />

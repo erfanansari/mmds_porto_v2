@@ -37,6 +37,41 @@
     color: var(--color-brand-silver) !important;
   }
 
+  html[data-theme='light'] body {
+    background-image:
+      radial-gradient(circle at top center, rgba(124,58,237,0.08), transparent 18%),
+      radial-gradient(circle at bottom right, rgba(59,130,246,0.04), transparent 18%),
+      linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.98));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  html[data-theme='light'] section#about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 18% 18%, rgba(124,58,237,0.12), transparent 18%),
+      radial-gradient(circle at 82% 12%, rgba(59,130,246,0.08), transparent 16%),
+      linear-gradient(135deg, rgba(15,23,42,0.04) 0%, transparent 45%),
+      linear-gradient(90deg, rgba(15,23,42,0.03) 0%, transparent 40%),
+      repeating-linear-gradient(0deg, rgba(15,23,42,0.02), rgba(15,23,42,0.02) 1px, transparent 1px, transparent 24px),
+      repeating-linear-gradient(90deg, rgba(15,23,42,0.02), rgba(15,23,42,0.02) 1px, transparent 1px, transparent 24px);
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  html[data-theme='light'] section#about::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 35% 80%, rgba(59,130,246,0.04), transparent 16%), radial-gradient(circle at 70% 65%, rgba(168,85,247,0.06), transparent 14%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   html[data-theme='light'] .hero-name-gradient {
     background-image: linear-gradient(to right, var(--color-brand-purple-light), var(--color-brand-silver)) !important;
   }
@@ -93,5 +128,31 @@
 
   .project-card-frame {
     @apply rounded-3xl overflow-hidden border border-white/10 shadow-xl shadow-black/20 bg-brand-black/60;
+  }
+
+  section#projects {
+    position: relative;
+  }
+
+  section#projects::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background-image:
+      radial-gradient(circle at 20% 100%, rgba(75, 0, 130, 0.15), transparent 25%),
+      radial-gradient(circle at 80% 100%, rgba(59, 130, 246, 0.1), transparent 30%),
+      linear-gradient(180deg, transparent 0%, rgba(13, 13, 23, 0.3) 100%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  html[data-theme='light'] section#projects::after {
+    background-image:
+      radial-gradient(circle at 20% 100%, rgba(91, 33, 182, 0.08), transparent 25%),
+      radial-gradient(circle at 80% 100%, rgba(59, 130, 246, 0.06), transparent 30%),
+      linear-gradient(180deg, transparent 0%, rgba(248, 250, 252, 0.2) 100%);
   }
 }

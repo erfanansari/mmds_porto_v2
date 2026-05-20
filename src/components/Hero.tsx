@@ -4,7 +4,7 @@ import profileImg from '../assets/profile.webp';
 
 const Hero = () => {
   return (
-    <section id="about" className="relative min-h-screen flex items-center px-6 md:px-12 pt-32 overflow-hidden bg-brand-black">
+    <section id="about" className="relative min-h-screen flex items-center px-6 md:px-12 pt-20 overflow-hidden bg-brand-black">
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 -left-1/4 w-[560px] h-[560px] bg-brand-purple/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 -right-1/4 w-[560px] h-[560px] bg-brand-purple/10 rounded-full blur-[120px]" />
@@ -81,7 +81,7 @@ const Hero = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-brand-purple-light bg-brand-purple/90 px-6 py-3 text-sm text-white transition-all hover:bg-brand-purple-light"
+              className="inline-flex items-center gap-2 rounded-full border border-brand-purple-light bg-brand-purple/90 px-6 py-3 text-sm text-white force-white transition-all hover:bg-brand-purple-light"
             >
               View Projects
               <ChevronRight size={18} className="transition-transform" />
