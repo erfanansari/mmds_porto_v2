@@ -29,6 +29,38 @@
     @apply bg-brand-black text-brand-silver font-sans selection:bg-brand-purple-light/30;
   }
 
+  html[data-theme='light'] * {
+    scrollbar-color: rgba(15,23,42,0.3) transparent;
+  }
+
+  html[data-theme='light'] .text-white {
+    color: var(--color-brand-silver) !important;
+  }
+
+  html[data-theme='light'] .bg-white\/5 {
+    background-color: rgba(15,23,42,0.05) !important;
+  }
+
+  html[data-theme='light'] .bg-white\/10 {
+    background-color: rgba(15,23,42,0.1) !important;
+  }
+
+  html[data-theme='light'] .bg-white\/20 {
+    background-color: rgba(15,23,42,0.16) !important;
+  }
+
+  html[data-theme='light'] .border-white\/10 {
+    border-color: rgba(15,23,42,0.12) !important;
+  }
+
+  html[data-theme='light'] .shadow-black\/20 {
+    box-shadow: 0 20px 20px rgba(15,23,42,0.08) !important;
+  }
+
+  html[data-theme='light'] .shadow-black\/40 {
+    box-shadow: 0 20px 20px rgba(15,23,42,0.12) !important;
+  }
+
   * {
     scrollbar-color: rgba(255,255,255,0.2) transparent;
   }
