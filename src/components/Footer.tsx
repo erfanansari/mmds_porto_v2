@@ -127,7 +127,7 @@ const Footer = () => {
               </div>
               <button 
                 type="submit" 
-                className="w-full py-4 bg-brand-purple hover:bg-brand-purple-light text-white font-bold rounded-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+                className="w-full py-4 bg-brand-purple hover:bg-brand-purple-light text-white force-white font-bold rounded-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
               >
                 SEND TRANSMISSION
                 <Send size={16} />
@@ -138,7 +138,7 @@ const Footer = () => {
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="w-8 h-8 rounded bg-brand-purple flex items-center justify-center font-bold text-sm">MB</div>
+            <div className="w-8 h-8 rounded bg-brand-purple flex items-center justify-center font-bold text-sm text-white force-white">MB</div>
             <div>
               <div className="text-[10px] font-mono tracking-widest text-brand-silver/40">© 2026 MOHAMMAD BAGHERSAD</div>
               <div className="text-[10px] text-brand-silver/50">Engineering portfolio for robotics, embedded systems, and control applications.</div>

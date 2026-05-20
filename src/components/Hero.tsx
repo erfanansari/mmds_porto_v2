@@ -22,7 +22,7 @@ const Hero = () => {
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.9]">
                 MOHAMMAD <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple-light to-white">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple-light to-white hero-name-gradient">
                   BAGHERSAD
                 </span>
               </h1>
