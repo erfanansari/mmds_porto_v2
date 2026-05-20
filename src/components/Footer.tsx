@@ -49,13 +49,13 @@ const Footer = () => {
                   <div className="text-sm font-medium text-white">+98-9136399987</div>
                 </div>
               </a>
-              <a href="https://t.me/mmdba" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+              <a href="https://t.me/mohamad_baghersad" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
                   <MessageSquare size={20} className="group-hover:text-white transition-colors" />
                 </div>
                 <div>
                   <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">TELEGRAM</div>
-                  <div className="text-sm font-medium text-white">@mmdba</div>
+                  <div className="text-sm font-medium text-white">@mohamad_baghersad</div>
                 </div>
               </a>
               <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
