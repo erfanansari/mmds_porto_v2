@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck } from 'lucide-react';
+import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck, GraduationCap, Building, BookOpen } from 'lucide-react';
 
 const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: string[], icon: any, key?: any }) => (
   <motion.div
@@ -70,7 +70,7 @@ const SkillsResearch = () => {
             <SkillCategory 
               title="Robotics" 
               icon={Settings} 
-              skills={["ROS / ROS2", "Kinematics & Dynamics", "Motion Planning", "Gazebo / Webots"]} 
+              skills={["SolidWorks 3D Design", "Altium Designer", "Kinematics & Dynamics", "Gazebo / Webots"]} 
             />
             <SkillCategory 
               title="Control Systems" 
@@ -85,7 +85,7 @@ const SkillsResearch = () => {
             <SkillCategory 
               title="Embedded Systems" 
               icon={Cpu} 
-              skills={["C / C++ / Python", "Real-time OS (RTOS)", "FPGA / Microcontrollers", "CAN / Ethernet Communication"]} 
+              skills={["C / C++ / Python", "Real-time OS (RTOS)", "STM32 Microcontrollers", "PIC Microcontrollers", "Raspberry Pi"]} 
             />
           </div>
         </div>
@@ -96,30 +96,89 @@ const SkillsResearch = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-brand-purple/15 border border-brand-purple/30 p-10 rounded-3xl backdrop-blur-sm"
+            className="relative overflow-hidden bg-brand-purple/10 border border-brand-purple/30 p-10 rounded-3xl backdrop-blur-sm"
           >
-            <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-4">Education</div>
-            <h2 className="text-3xl font-bold text-white mb-8 leading-tight">Academic Background in Engineering</h2>
-            <div className="space-y-6">
-              <div className="flex gap-4 items-start">
-                <div className="shrink-0 w-10 h-10 rounded-lg bg-brand-purple/30 flex items-center justify-center text-brand-purple-light font-bold">i</div>
+            <div className="pointer-events-none absolute inset-0 opacity-30 text-brand-purple-light">
+              <svg viewBox="0 0 600 360" className="w-full h-full" stroke="currentColor" fill="none">
+                <path d="M160 76h280v30H160z" strokeWidth="2" />
+                <path d="M225 106v-22c0-8 8-14 16-14h102c8 0 16 6 16 14v22" strokeWidth="2" />
+                <path d="M240 112h120" strokeWidth="2" />
+                <circle cx="270" cy="126" r="7" fill="currentColor" />
+                <circle cx="330" cy="126" r="7" fill="currentColor" />
+                <path d="M270 150c15 10 45 10 60 0" strokeWidth="2" />
+                <path d="M205 148h190v120H205z" strokeWidth="2" />
+                <path d="M220 168h160" strokeWidth="1.8" />
+                <path d="M220 190h160" strokeWidth="1.8" />
+                <path d="M220 212h160" strokeWidth="1.8" />
+                <path d="M220 234h160" strokeWidth="1.8" />
+                <path d="M220 256h160" strokeWidth="1.8" />
+                <path d="M250 274v40" strokeWidth="2" />
+                <path d="M350 274v40" strokeWidth="2" />
+                <path d="M250 314h100" strokeWidth="2" />
+                <path d="M165 176l-40 30" strokeWidth="2" />
+                <path d="M435 176l40 30" strokeWidth="2" />
+                <path d="M135 208h55" strokeWidth="1.5" />
+                <path d="M410 208h55" strokeWidth="1.5" />
+                <circle cx="150" cy="208" r="8" strokeWidth="1.5" />
+                <circle cx="425" cy="208" r="8" strokeWidth="1.5" />
+                <path d="M170 222c20 14 40 14 60 0" strokeWidth="1.2" />
+                <path d="M390 222c20 14 40 14 60 0" strokeWidth="1.2" />
+                <path d="M250 92l-34-30" strokeWidth="1.2" />
+                <path d="M370 92l34-30" strokeWidth="1.2" />
+                <path d="M295 72v-24" strokeWidth="1.2" />
+                <path d="M108 100h24M468 100h24" strokeWidth="1.2" />
+                <path d="M120 124v-10" strokeWidth="1.2" />
+                <path d="M492 124v-10" strokeWidth="1.2" />
+                <path d="M170 126l-22 12" strokeWidth="1.4" />
+                <path d="M430 126l22 12" strokeWidth="1.4" />
+              </svg>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/5 via-transparent to-brand-black/0" />
+            <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-3xl bg-brand-purple/30 flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-brand-purple-light">
+                    <path d="M21 8l-9-5-9 5 9 5 9-5z" />
+                    <path d="M12 13v9" />
+                    <path d="M3 8.5l9 5 9-5" />
+                    <path d="M3 11.5l9 5 9-5" />
+                  </svg>
+                </div>
                 <div>
-                  <p className="text-white font-semibold mb-1">Bachelor's Degree</p>
-                  <p className="text-brand-silver/70 text-sm font-light">Mechanical Engineering - University of Isfahan</p>
+                  <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase">Education</div>
+                  <h2 className="text-3xl font-bold text-white leading-tight mt-2">Academic Background in Engineering</h2>
                 </div>
               </div>
-              <div className="flex gap-4 items-start">
-                <div className="shrink-0 w-10 h-10 rounded-lg bg-brand-purple/30 flex items-center justify-center text-brand-purple-light font-bold">ii</div>
-                <div>
-                  <p className="text-white font-semibold mb-1">Master Degree</p>
-                  <p className="text-brand-silver/70 text-sm font-light">Mechatronics - Shahid Beheshti University</p>
+            </div>
+            <div className="grid gap-4">
+              <div className="flex gap-4 items-start rounded-3xl border border-white/10 bg-white/5 p-6">
+                <div className="shrink-0 w-12 h-12 rounded-2xl bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
+                  <GraduationCap size={18} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm uppercase tracking-widest text-brand-purple-light mb-1">Bachelor's Degree</p>
+                  <h3 className="text-lg font-semibold text-white">Mechanical Engineering</h3>
+                  <p className="text-brand-silver/70 text-sm mt-1">University of Isfahan</p>
                 </div>
               </div>
-              <div className="flex gap-4 items-start">
-                <div className="shrink-0 w-10 h-10 rounded-lg bg-brand-purple/30 flex items-center justify-center text-brand-purple-light font-bold">iii</div>
-                <div>
-                  <p className="text-white font-semibold mb-1">PhD Candidate</p>
-                  <p className="text-brand-silver/70 text-sm font-light">Mechatronics - University of Tehran</p>
+              <div className="flex gap-4 items-start rounded-3xl border border-white/10 bg-white/5 p-6">
+                <div className="shrink-0 w-12 h-12 rounded-2xl bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
+                  <Building size={18} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm uppercase tracking-widest text-brand-purple-light mb-1">Master's Degree</p>
+                  <h3 className="text-lg font-semibold text-white">Mechatronics</h3>
+                  <p className="text-brand-silver/70 text-sm mt-1">Shahid Beheshti University</p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start rounded-3xl border border-white/10 bg-white/5 p-6">
+                <div className="shrink-0 w-12 h-12 rounded-2xl bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
+                  <BookOpen size={18} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm uppercase tracking-widest text-brand-purple-light mb-1">PhD Candidate</p>
+                  <h3 className="text-lg font-semibold text-white">Mechatronics</h3>
+                  <p className="text-brand-silver/70 text-sm mt-1">University of Tehran</p>
                 </div>
               </div>
             </div>
