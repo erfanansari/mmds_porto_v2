@@ -98,41 +98,6 @@ const SkillsResearch = () => {
             viewport={{ once: true }}
             className="relative overflow-hidden bg-brand-purple/10 border border-brand-purple/30 p-10 rounded-3xl backdrop-blur-sm"
           >
-            <div className="pointer-events-none absolute inset-0 opacity-30 text-brand-purple-light">
-              <svg viewBox="0 0 600 360" className="w-full h-full" stroke="currentColor" fill="none">
-                <path d="M160 76h280v30H160z" strokeWidth="2" />
-                <path d="M225 106v-22c0-8 8-14 16-14h102c8 0 16 6 16 14v22" strokeWidth="2" />
-                <path d="M240 112h120" strokeWidth="2" />
-                <circle cx="270" cy="126" r="7" fill="currentColor" />
-                <circle cx="330" cy="126" r="7" fill="currentColor" />
-                <path d="M270 150c15 10 45 10 60 0" strokeWidth="2" />
-                <path d="M205 148h190v120H205z" strokeWidth="2" />
-                <path d="M220 168h160" strokeWidth="1.8" />
-                <path d="M220 190h160" strokeWidth="1.8" />
-                <path d="M220 212h160" strokeWidth="1.8" />
-                <path d="M220 234h160" strokeWidth="1.8" />
-                <path d="M220 256h160" strokeWidth="1.8" />
-                <path d="M250 274v40" strokeWidth="2" />
-                <path d="M350 274v40" strokeWidth="2" />
-                <path d="M250 314h100" strokeWidth="2" />
-                <path d="M165 176l-40 30" strokeWidth="2" />
-                <path d="M435 176l40 30" strokeWidth="2" />
-                <path d="M135 208h55" strokeWidth="1.5" />
-                <path d="M410 208h55" strokeWidth="1.5" />
-                <circle cx="150" cy="208" r="8" strokeWidth="1.5" />
-                <circle cx="425" cy="208" r="8" strokeWidth="1.5" />
-                <path d="M170 222c20 14 40 14 60 0" strokeWidth="1.2" />
-                <path d="M390 222c20 14 40 14 60 0" strokeWidth="1.2" />
-                <path d="M250 92l-34-30" strokeWidth="1.2" />
-                <path d="M370 92l34-30" strokeWidth="1.2" />
-                <path d="M295 72v-24" strokeWidth="1.2" />
-                <path d="M108 100h24M468 100h24" strokeWidth="1.2" />
-                <path d="M120 124v-10" strokeWidth="1.2" />
-                <path d="M492 124v-10" strokeWidth="1.2" />
-                <path d="M170 126l-22 12" strokeWidth="1.4" />
-                <path d="M430 126l22 12" strokeWidth="1.4" />
-              </svg>
-            </div>
             <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/5 via-transparent to-brand-black/0" />
             <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
               <div className="flex items-center gap-4">
