@@ -43,12 +43,18 @@ const Hero = () => {
               className="shrink-0"
             >
               <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white/10 glow-purple bg-brand-slate/50 group">
-                <img
-                  src={profileImg}
-                  alt="Mohammad Baghersad"
-                  className="w-full h-full object-cover transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 via-transparent to-transparent opacity-40 transition-opacity duration-500" />
+                <motion.div
+                  whileHover={{ scale: 1.4 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full h-full origin-center"
+                >
+                  <img
+                    src={profileImg}
+                    alt="Mohammad Baghersad"
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 via-transparent to-transparent opacity-40 transition-opacity duration-500 pointer-events-none" />
               </div>
             </motion.div>
           </div>
