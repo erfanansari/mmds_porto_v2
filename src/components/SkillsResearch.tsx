@@ -96,56 +96,73 @@ const SkillsResearch = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden bg-brand-purple/10 border border-brand-purple/30 p-10 rounded-3xl backdrop-blur-sm"
+            className="relative overflow-hidden bg-brand-purple-light/5 dark:bg-purple-400/5 border border-brand-purple-light/10 dark:border-purple-400/10 p-10 rounded-3xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/5 via-transparent to-brand-black/0" />
-            <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-3xl bg-brand-purple/30 flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-brand-purple-light">
-                    <path d="M21 8l-9-5-9 5 9 5 9-5z" />
-                    <path d="M12 13v9" />
-                    <path d="M3 8.5l9 5 9-5" />
-                    <path d="M3 11.5l9 5 9-5" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase">Education</div>
-                  <h2 className="text-3xl font-bold text-white leading-tight mt-2">Academic Background in Engineering</h2>
-                </div>
-              </div>
+            <div className="mb-12">
+              <div className="text-brand-purple-light dark:text-purple-400 font-mono text-xs tracking-widest uppercase mb-3">Education</div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
             </div>
-            <div className="grid gap-4">
-              <div className="flex gap-4 items-start rounded-3xl border border-white/10 bg-white/5 p-6">
-                <div className="shrink-0 w-12 h-12 rounded-2xl bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
-                  <GraduationCap size={18} />
+
+            <div className="grid gap-6">
+              {/* Bachelor's */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+              >
+                <div className="flex gap-6">
+                  <div className="shrink-0 w-16 h-16 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
+                    <GraduationCap size={28} className="text-brand-purple-light dark:text-purple-400" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">Bachelor's Degree • 2019-2023</div>
+                    <h3 className="text-2xl font-bold text-white mb-1">Mechanical Engineering</h3>
+                    <p className="text-brand-silver/70">University of Isfahan</p>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <p className="text-sm uppercase tracking-widest text-brand-purple-light mb-1">Bachelor's Degree</p>
-                  <h3 className="text-lg font-semibold text-white">Mechanical Engineering</h3>
-                  <p className="text-brand-silver/70 text-sm mt-1">University of Isfahan</p>
+              </motion.div>
+
+              {/* Master's */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+              >
+                <div className="flex gap-6">
+                  <div className="shrink-0 w-16 h-16 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
+                    <Building size={28} className="text-brand-purple-light dark:text-purple-400" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">Master's Degree • 2024-2026</div>
+                    <h3 className="text-2xl font-bold text-white mb-1">Mechatronics Engineering</h3>
+                    <p className="text-brand-silver/70">Shahid Beheshti University </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-4 items-start rounded-3xl border border-white/10 bg-white/5 p-6">
-                <div className="shrink-0 w-12 h-12 rounded-2xl bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
-                  <Building size={18} />
+              </motion.div>
+
+              {/* PhD */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+              >
+                <div className="flex gap-6">
+                  <div className="shrink-0 w-16 h-16 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
+                    <BookOpen size={28} className="text-brand-purple-light dark:text-purple-400" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">PhD Candidate • 2026-Present</div>
+                    <h3 className="text-2xl font-bold text-white mb-1">Mechatronics Engineering</h3>
+                    <p className="text-brand-silver/70">University of Tehran </p>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <p className="text-sm uppercase tracking-widest text-brand-purple-light mb-1">Master's Degree</p>
-                  <h3 className="text-lg font-semibold text-white">Mechatronics</h3>
-                  <p className="text-brand-silver/70 text-sm mt-1">Shahid Beheshti University</p>
-                </div>
-              </div>
-              <div className="flex gap-4 items-start rounded-3xl border border-white/10 bg-white/5 p-6">
-                <div className="shrink-0 w-12 h-12 rounded-2xl bg-brand-purple/20 flex items-center justify-center text-brand-purple-light">
-                  <BookOpen size={18} />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm uppercase tracking-widest text-brand-purple-light mb-1">PhD Candidate</p>
-                  <h3 className="text-lg font-semibold text-white">Mechatronics</h3>
-                  <p className="text-brand-silver/70 text-sm mt-1">University of Tehran</p>
-                </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
