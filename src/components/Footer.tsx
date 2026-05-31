@@ -24,10 +24,13 @@ const Footer = () => {
     
     try {
       const formData = new FormData(e.currentTarget);
+      const urlParams = new URLSearchParams();
+      formData.forEach((value, key) => urlParams.append(key, value.toString()));
+
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString()
+        body: urlParams.toString()
       });
       
       if (response.ok) {
@@ -186,8 +189,8 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <a href="https://github.com/mmd-bsd" className="text-brand-silver/50 hover:text-white transition-colors"><Github size={18} /></a>
-            <a href="https://www.linkedin.com/in/mohammad-baghersad/" className="text-brand-silver/50 hover:text-white transition-colors"><Linkedin size={18} /></a>
+            <a href="https://github.com/mmd-bsd" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="text-brand-silver/50 hover:text-white transition-colors"><Github size={18} /></a>
+            <a href="https://www.linkedin.com/in/mohammad-baghersad/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="text-brand-silver/50 hover:text-white transition-colors"><Linkedin size={18} /></a>
             <a href="/CV-Mohammad-Baghersad.pdf" download className="rounded-full border border-white/10 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-brand-silver/60 hover:text-white hover:border-brand-purple transition-all">
               Download CV
             </a>

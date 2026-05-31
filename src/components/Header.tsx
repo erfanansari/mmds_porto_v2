@@ -103,10 +103,10 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
         </nav>
 
         <div className="flex items-center gap-3">
-          <a href="https://github.com/mmd-bsd" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
+          <a href="https://github.com/mmd-bsd" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Github size={18} />
           </a>
-          <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
+          <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Linkedin size={18} />
           </a>
           <button

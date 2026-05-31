@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck, GraduationCap, Building, BookOpen } from 'lucide-react';
 
-const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: string[], icon: any, key?: any }) => (
+const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: string[], icon: React.ElementType }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
