@@ -98,14 +98,9 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               }`}
             >
               {item.label}
-           button
-            onClick={handleEmailClick}
-            className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors cursor-pointer"
-            title="Click to email or copy email address"
-            aria-label="Send email"
-          >
-            {emailCopied ? <Check size={18} /> : <Mail size={18} />}
-          </button>
+            </a>
+          ))}
+        </nav>
 
         <div className="flex items-center gap-3">
           <a href="https://github.com/mmd-bsd" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
@@ -114,9 +109,14 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
           <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Linkedin size={18} />
           </a>
-          <a href="mailto:robotmb@gmail.com" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
-            <Mail size={18} />
-          </a>
+          <button
+            onClick={handleEmailClick}
+            className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors cursor-pointer"
+            title="Click to email or copy email address"
+            aria-label="Send email"
+          >
+            {emailCopied ? <Check size={18} /> : <Mail size={18} />}
+          </button>
           <button
             onClick={onThemeToggle}
             className="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-brand-silver/70 hover:text-white transition-colors"
