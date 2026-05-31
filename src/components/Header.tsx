@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Menu, X, Moon, Sun } from 'lucide-react';
+import { Github, Linkedin, Mail, Menu, X, Moon, Sun, Check } from 'lucide-react';
 
 const navItems = [
   { label: 'ABOUT', href: '#about' },
@@ -13,6 +13,17 @@ const navItems = [
 const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeToggle: () => void }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:robotmb@gmail.com';
+    // Fallback: copy email to clipboard after a delay
+    setTimeout(() => {
+      navigator.clipboard.writeText('robotmb@gmail.com');
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    }, 500);
+  };
 
   useEffect(() => {
     const sections = navItems.map((item) => document.querySelector(item.href));
@@ -87,9 +98,14 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               }`}
             >
               {item.label}
-            </a>
-          ))}
-        </nav>
+           button
+            onClick={handleEmailClick}
+            className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors cursor-pointer"
+            title="Click to email or copy email address"
+            aria-label="Send email"
+          >
+            {emailCopied ? <Check size={18} /> : <Mail size={18} />}
+          </button>
 
         <div className="flex items-center gap-3">
           <a href="https://github.com/mmd-bsd" target="_blank" rel="noopener noreferrer" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
