@@ -1,14 +1,47 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, GraduationCap, Send, ArrowUp, Phone, MessageSquare } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, ArrowUp, Phone, MessageSquare, Check } from 'lucide-react';
 
 const Footer = () => {
-  const [copied, setCopied] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState('');
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('robotmb@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:robotmb@gmail.com';
+    setTimeout(() => {
+      navigator.clipboard.writeText('robotmb@gmail.com');
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    }, 500);
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormError('');
+    setFormSubmitting(true);
+    
+    try {
+      const formData = new FormData(e.currentTarget);
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString()
+      });
+      
+      if (response.ok) {
+        setFormSubmitted(true);
+        e.currentTarget.reset();
+        setTimeout(() => setFormSubmitted(false), 4000);
+      } else {
+        setFormError('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setFormError('An error occurred. Please try again later.');
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   const scrollToTop = () => {
@@ -29,23 +62,23 @@ const Footer = () => {
             <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">Stay Connected</h2>
             
             <div className="space-y-6">
-              <a href="mailto:robotmb@gmail.com" className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
-                  <Mail size={20} className="group-hover:text-white transition-colors" />
+              <button onClick={handleEmailClick} className="flex items-center gap-4 group cursor-pointer w-full text-left">
+                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300 flex-shrink-0">
+                  {emailCopied ? <Check size={20} className="text-brand-purple-light" /> : <Mail size={20} className="group-hover:text-white transition-colors" />}
                 </div>
                 <div>
-                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase text-brand-purple">
+                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase text-brand-purple">
                     EMAIL
                   </div>
                   <div className="text-sm font-medium text-white font-sans">robotmb@gmail.com</div>
                 </div>
-              </a>
+              </button>
               <a href="tel:+989136399987" className="flex items-center gap-4 group cursor-pointer">
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
                   <Phone size={20} className="group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">PHONE</div>
+                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">PHONE</div>
                   <div className="text-sm font-medium text-white">+98-9136399987</div>
                 </div>
               </a>
@@ -54,7 +87,7 @@ const Footer = () => {
                   <MessageSquare size={20} className="group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">TELEGRAM</div>
+                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">TELEGRAM</div>
                   <div className="text-sm font-medium text-white">@mohamad_baghersad</div>
                 </div>
               </a>
@@ -63,19 +96,10 @@ const Footer = () => {
                   <Linkedin size={20} className="group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">LINKEDIN</div>
+                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">LINKEDIN</div>
                   <div className="text-sm font-medium text-white">mohammad-baghersad</div>
                 </div>
               </a>
-              <div className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
-                  <GraduationCap size={20} className="group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-[10px] text-brand-silver/40 font-mono tracking-widest uppercase">GOOGLE SCHOLAR</div>
-                  <div className="text-sm font-medium text-white">View Publications</div>
-                </div>
-              </div>
             </div>
           </motion.div>
 
@@ -85,7 +109,25 @@ const Footer = () => {
             viewport={{ once: true }}
             className="glass-card p-10 bg-brand-slate/20"
           >
-            <form name="contact" method="POST" data-netlify="true" className="space-y-6">
+            {formSubmitted && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-brand-purple/20 border border-brand-purple-light rounded-lg text-brand-purple-light text-sm"
+              >
+                ✓ Message sent successfully! I'll get back to you soon.
+              </motion.div>
+            )}
+            {formError && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-300 text-sm"
+              >
+                {formError}
+              </motion.div>
+            )}
+            <form name="contact" method="POST" data-netlify="true" onSubmit={handleFormSubmit} className="space-y-6">
               <input type="hidden" name="form-name" value="contact" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -124,9 +166,10 @@ const Footer = () => {
               </div>
               <button 
                 type="submit" 
-                className="w-full py-4 bg-brand-purple hover:bg-brand-purple-light text-white force-white font-bold rounded-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+                disabled={formSubmitting}
+                className="w-full py-4 bg-brand-purple hover:bg-brand-purple-light disabled:opacity-50 disabled:cursor-not-allowed text-white force-white font-bold rounded-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
               >
-                SEND TRANSMISSION
+                {formSubmitting ? 'SENDING...' : 'SEND TRANSMISSION'}
                 <Send size={16} />
               </button>
             </form>
