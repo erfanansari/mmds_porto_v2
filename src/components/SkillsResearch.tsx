@@ -117,7 +117,10 @@ const SkillsResearch = () => {
                     <GraduationCap size={16} className="text-brand-purple-light dark:text-purple-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">Bachelor's Degree • 2019-2023</div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2 leading-none">
+                      <span>Bachelor's Degree</span>
+                      <span className="block">2019-2023</span>
+                    </div>
                     <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechanical Engineering</h3>
                     <p className="text-brand-silver/70">University of Isfahan</p>
                   </div>
@@ -137,7 +140,10 @@ const SkillsResearch = () => {
                     <Building size={16} className="text-brand-purple-light dark:text-purple-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">Master's Degree • 2024-2026</div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2 leading-none">
+                      <span>Master's Degree</span>
+                      <span className="block">2024-2026</span>
+                    </div>
                     <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
                     <p className="text-brand-silver/70">Shahid Beheshti University </p>
                   </div>
@@ -157,7 +163,10 @@ const SkillsResearch = () => {
                     <BookOpen size={16} className="text-brand-purple-light dark:text-purple-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">PhD Candidate • 2026-Present</div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2 leading-none">
+                      <span>PhD Candidate</span>
+                      <span className="block">2026-Present</span>
+                    </div>
                     <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
                     <p className="text-brand-silver/70">University of Tehran </p>
                   </div>
