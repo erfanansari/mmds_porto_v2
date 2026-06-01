@@ -25,7 +25,7 @@ const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: s
 
 const SkillsResearch = () => {
   return (
-    <section id="skills" className="py-24 px-6 md:px-12 bg-brand-black/95 relative overflow-hidden">
+    <section id="skills" className="py-24 px-4 sm:px-6 bg-brand-black/95 relative overflow-hidden">
       {/* Decorative Orbs */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-brand-purple/10 rounded-full blur-[100px] -mr-48 -mt-48" />
       
@@ -91,26 +91,26 @@ const SkillsResearch = () => {
         </div>
 
         {/* Education Section */}
-        <div id="education" className="pt-24 border-t border-white/5 px-6 md:px-12">
+        <div id="education" className="pt-24 border-t border-white/5 px-3 sm:px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden bg-brand-purple-light/5 dark:bg-purple-400/5 border border-brand-purple-light/10 dark:border-purple-400/10 p-10 rounded-3xl mx-auto w-full max-w-[1100px]"
+            className="relative overflow-hidden bg-brand-purple-light/5 dark:bg-purple-400/5 border border-brand-purple-light/10 dark:border-purple-400/10 p-3 sm:p-4 lg:p-6 rounded-3xl mx-auto w-full"
           >
             <div className="mb-12">
               <div className="text-brand-purple-light dark:text-purple-400 font-mono text-[11px] md:text-xs tracking-widest uppercase mb-3">Education</div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
             </div>
 
-            <div className="grid gap-6 grid-cols-1">
+            <div className="grid gap-2 grid-cols-1">
               {/* Bachelor's */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
               >
                 <div className="flex gap-4 items-start">
                   <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
@@ -130,7 +130,7 @@ const SkillsResearch = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
               >
                 <div className="flex gap-4 items-start">
                   <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
@@ -150,7 +150,7 @@ const SkillsResearch = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
               >
                 <div className="flex gap-4 items-start">
                   <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
