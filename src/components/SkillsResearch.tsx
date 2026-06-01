@@ -91,19 +91,19 @@ const SkillsResearch = () => {
         </div>
 
         {/* Education Section */}
-        <div id="education" className="pt-24 border-t border-white/5 -mx-6 md:-mx-12 px-6 md:px-12">
+        <div id="education" className="pt-24 border-t border-white/5 px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden bg-brand-purple-light/5 dark:bg-purple-400/5 border border-brand-purple-light/10 dark:border-purple-400/10 p-10 rounded-3xl"
+            className="relative overflow-hidden bg-brand-purple-light/5 dark:bg-purple-400/5 border border-brand-purple-light/10 dark:border-purple-400/10 p-10 rounded-3xl mx-auto w-full max-w-[1100px]"
           >
             <div className="mb-12">
-              <div className="text-brand-purple-light dark:text-purple-400 font-mono text-xs tracking-widest uppercase mb-3">Education</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
+              <div className="text-brand-purple-light dark:text-purple-400 font-mono text-[11px] md:text-xs tracking-widest uppercase mb-3">Education</div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
             </div>
 
-            <div className="grid gap-6">
+            <div className="grid gap-6 grid-cols-1">
               {/* Bachelor's */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -112,13 +112,13 @@ const SkillsResearch = () => {
                 transition={{ delay: 0.1 }}
                 className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
               >
-                <div className="flex gap-6">
-                  <div className="shrink-0 w-16 h-16 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
-                    <GraduationCap size={28} className="text-brand-purple-light dark:text-purple-400" />
+                <div className="flex gap-4 items-start">
+                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
+                    <GraduationCap size={16} className="text-brand-purple-light dark:text-purple-400" />
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">Bachelor's Degree • 2019-2023</div>
-                    <h3 className="text-2xl font-bold text-white mb-1">Mechanical Engineering</h3>
+                    <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechanical Engineering</h3>
                     <p className="text-brand-silver/70">University of Isfahan</p>
                   </div>
                 </div>
@@ -132,13 +132,13 @@ const SkillsResearch = () => {
                 transition={{ delay: 0.2 }}
                 className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
               >
-                <div className="flex gap-6">
-                  <div className="shrink-0 w-16 h-16 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
-                    <Building size={28} className="text-brand-purple-light dark:text-purple-400" />
+                <div className="flex gap-4 items-start">
+                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
+                    <Building size={16} className="text-brand-purple-light dark:text-purple-400" />
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">Master's Degree • 2024-2026</div>
-                    <h3 className="text-2xl font-bold text-white mb-1">Mechatronics Engineering</h3>
+                    <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
                     <p className="text-brand-silver/70">Shahid Beheshti University </p>
                   </div>
                 </div>
@@ -152,13 +152,13 @@ const SkillsResearch = () => {
                 transition={{ delay: 0.3 }}
                 className="group relative glass-card p-8 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
               >
-                <div className="flex gap-6">
-                  <div className="shrink-0 w-16 h-16 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
-                    <BookOpen size={28} className="text-brand-purple-light dark:text-purple-400" />
+                <div className="flex gap-4 items-start">
+                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
+                    <BookOpen size={16} className="text-brand-purple-light dark:text-purple-400" />
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2">PhD Candidate • 2026-Present</div>
-                    <h3 className="text-2xl font-bold text-white mb-1">Mechatronics Engineering</h3>
+                    <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
                     <p className="text-brand-silver/70">University of Tehran </p>
                   </div>
                 </div>
