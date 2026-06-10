@@ -1,0 +1,15 @@
+export const site = {
+  name: 'Mohammad Baghersad',
+  title: 'Robotics & Embedded Systems Engineer',
+  url: 'https://mohamadbaghersad.com',
+  email: 'robotmb@gmail.com',
+  phone: '+98-9136399987',
+  phoneHref: 'tel:+989136399987',
+  telegram: '@mohamad_baghersad',
+  telegramUrl: 'https://t.me/mohamad_baghersad',
+  linkedin: 'https://www.linkedin.com/in/mohammad-baghersad/',
+  linkedinHandle: 'mohammad-baghersad',
+  github: 'https://github.com/mmd-bsd',
+  cvPath: '/CV-Mohammad-Baghersad.pdf',
+  ogImage: '/og-image.webp',
+} as const;

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Menu, X, Moon, Sun, Check } from 'lucide-react';
+import { Github, Linkedin, Mail, Menu, X, Moon, Sun } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
+import { site } from '../config/site';
 
 const navItems = [
   { label: 'ABOUT', href: '#about' },
@@ -14,18 +15,6 @@ const navItems = [
 const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeToggle: () => void }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
-  const [emailCopied, setEmailCopied] = useState(false);
-
-  const handleEmailClick = () => {
-    window.location.href = 'mailto:robotmb@gmail.com';
-    // Fallback: copy email to clipboard after a delay
-    setTimeout(() => {
-      navigator.clipboard.writeText('robotmb@gmail.com');
-      setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2000);
-    }, 500);
-  };
-
   useEffect(() => {
     const sections = navItems.map((item) => document.querySelector(item.href));
 
@@ -66,17 +55,17 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
           <div className="w-11 h-11 rounded-2xl overflow-hidden border border-brand-purple-light/30 glow-purple flex items-center justify-center bg-brand-purple">
             <img
               src={profileImg}
-              alt="Mohammad Baghersad"
+              alt={site.name}
               className="w-full h-full object-cover"
             />
           </div>
           <div className="hidden sm:block">
-            <p className="text-sm font-semibold tracking-wider text-white">MOHAMMAD BAGHERSAD</p>
-            <p className="text-[10px] text-brand-silver/50 font-mono uppercase tracking-[0.2em]">Robotics & Embedded Systems</p>
+            <p className="text-sm font-semibold tracking-wider text-white">{site.name.toUpperCase()}</p>
+            <p className="text-[10px] text-brand-silver/50 font-mono uppercase tracking-[0.2em]">{site.title}</p>
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6 text-xs font-semibold tracking-widest text-brand-silver/60">
+        <nav className="hidden md:flex items-center gap-6 text-xs font-semibold tracking-widest text-brand-silver/60" aria-label="Main navigation">
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -93,20 +82,20 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
         </nav>
 
         <div className="flex items-center gap-3">
-          <a href="https://github.com/mmd-bsd" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
+          <a href={site.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Github size={18} />
           </a>
-          <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Linkedin size={18} />
           </a>
-          <button
-            onClick={handleEmailClick}
-            className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors cursor-pointer"
-            title="Click to email or copy email address"
+          <a
+            href={`mailto:${site.email}`}
+            className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors"
+            title={`Send email to ${site.email}`}
             aria-label="Send email"
           >
-            {emailCopied ? <Check size={18} /> : <Mail size={18} />}
-          </button>
+            <Mail size={18} />
+          </a>
           <button
             onClick={onThemeToggle}
             className="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-brand-silver/70 hover:text-white transition-colors"
@@ -119,6 +108,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
             onClick={() => setMenuOpen((prev) => !prev)}
             className="inline-flex items-center justify-center rounded-xl border border-white/10 p-2 text-brand-silver/70 hover:text-white md:hidden"
             aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -127,7 +117,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
 
       {menuOpen && (
         <div className="mt-4 rounded-3xl border border-white/10 bg-brand-black/95 p-5 shadow-2xl shadow-black/40 md:hidden">
-          <nav className="flex flex-col gap-3 text-sm font-semibold tracking-widest text-brand-silver/70">
+          <nav className="flex flex-col gap-3 text-sm font-semibold tracking-widest text-brand-silver/70" aria-label="Mobile navigation">
             {navItems.map((item) => (
               <a
                 key={item.label}

@@ -1,19 +1,15 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type FC } from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink, Github } from 'lucide-react';
 import { ProjectData, projects } from '../data/projects';
 
 const filterOptions = ['All', 'Robotics', 'Control', 'Embedded', 'Vision', 'Automation'];
 
-const ProjectCard = ({
-  project,
-  index,
-  onSelect
-}: {
+const ProjectCard: FC<{
   project: ProjectData;
   index: number;
   onSelect: (id: number, slug: string) => void;
-}) => {
+}> = ({ project, index, onSelect }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}

@@ -1,52 +1,8 @@
-import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Send, ArrowUp, Phone, MessageSquare, Check } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Phone, MessageSquare } from 'lucide-react';
+import { site } from '../config/site';
 
 const Footer = () => {
-  const [emailCopied, setEmailCopied] = useState(false);
-  const [formSubmitting, setFormSubmitting] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formError, setFormError] = useState('');
-
-  const handleEmailClick = () => {
-    window.location.href = 'mailto:robotmb@gmail.com';
-    setTimeout(() => {
-      navigator.clipboard.writeText('robotmb@gmail.com');
-      setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2000);
-    }, 500);
-  };
-
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormError('');
-    setFormSubmitting(true);
-    
-    try {
-      const formData = new FormData(e.currentTarget);
-      const urlParams = new URLSearchParams();
-      formData.forEach((value, key) => urlParams.append(key, value.toString()));
-
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: urlParams.toString()
-      });
-      
-      if (response.ok) {
-        setFormSubmitted(true);
-        e.currentTarget.reset();
-        setTimeout(() => setFormSubmitted(false), 4000);
-      } else {
-        setFormError('Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      setFormError('An error occurred. Please try again later.');
-    } finally {
-      setFormSubmitting(false);
-    }
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -54,144 +10,71 @@ const Footer = () => {
   return (
     <footer id="contact" className="bg-brand-black border-t border-white/5 pt-24 pb-12 px-6 md:px-12 relative overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-brand-purple-light to-transparent opacity-30" />
-      
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">Stay Connected</h2>
-            
-            <div className="space-y-6">
-              <button onClick={handleEmailClick} className="flex items-center gap-4 group cursor-pointer w-full text-left">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300 flex-shrink-0">
-                  {emailCopied ? <Check size={20} className="text-brand-purple-light" /> : <Mail size={20} className="group-hover:text-white transition-colors" />}
-                </div>
-                <div>
-                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase text-brand-purple">
-                    EMAIL
-                  </div>
-                  <div className="text-sm font-medium text-white font-sans">robotmb@gmail.com</div>
-                </div>
-              </button>
-              <a href="tel:+989136399987" className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
-                  <Phone size={20} className="group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">PHONE</div>
-                  <div className="text-sm font-medium text-white">+98-9136399987</div>
-                </div>
-              </a>
-              <a href="https://t.me/mohamad_baghersad" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
-                  <MessageSquare size={20} className="group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">TELEGRAM</div>
-                  <div className="text-sm font-medium text-white">@mohamad_baghersad</div>
-                </div>
-              </a>
-              <a href="https://www.linkedin.com/in/mohammad-baghersad/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
-                  <Linkedin size={20} className="group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">LINKEDIN</div>
-                  <div className="text-sm font-medium text-white">mohammad-baghersad</div>
-                </div>
-              </a>
-            </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-card p-10 bg-brand-slate/20"
-          >
-            {formSubmitted && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-brand-purple/20 border border-brand-purple-light rounded-lg text-brand-purple-light text-sm"
-              >
-                ✓ Message sent successfully! I'll get back to you soon.
-              </motion.div>
-            )}
-            {formError && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-300 text-sm"
-              >
-                {formError}
-              </motion.div>
-            )}
-            <form name="contact" method="POST" data-netlify="true" onSubmit={handleFormSubmit} className="space-y-6">
-              <input type="hidden" name="form-name" value="contact" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">NAME</label>
-                  <input 
-                    type="text" 
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="John Doe" 
-                    className="w-full h-12 px-4 bg-brand-black border border-white/10 rounded-lg focus:outline-none focus:border-brand-purple transition-colors text-white text-sm"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">EMAIL</label>
-                  <input 
-                    type="email" 
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="john@example.com" 
-                    className="w-full h-12 px-4 bg-brand-black border border-white/10 rounded-lg focus:outline-none focus:border-brand-purple transition-colors text-white text-sm"
-                  />
-                </div>
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 max-w-xl"
+        >
+          <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">Stay Connected</h2>
+
+          <div className="space-y-6">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-4 group cursor-pointer">
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
+                <Mail size={20} className="group-hover:text-white transition-colors" />
               </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-[10px] font-mono tracking-widest text-brand-silver/50 ml-1">MESSAGE</label>
-                <textarea 
-                  id="message"
-                  name="message"
-                  required
-                  rows={4} 
-                  placeholder="How can we collaborate?" 
-                  className="w-full px-4 py-3 bg-brand-black border border-white/10 rounded-lg focus:outline-none focus:border-brand-purple transition-colors text-white text-sm resize-none"
-                />
+              <div>
+                <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase text-brand-purple">
+                  EMAIL
+                </div>
+                <div className="text-sm font-medium text-white font-sans">{site.email}</div>
               </div>
-              <button 
-                type="submit" 
-                disabled={formSubmitting}
-                className="w-full py-4 bg-brand-purple hover:bg-brand-purple-light disabled:opacity-50 disabled:cursor-not-allowed text-white force-white font-bold rounded-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
-              >
-                {formSubmitting ? 'SENDING...' : 'SEND TRANSMISSION'}
-                <Send size={16} />
-              </button>
-            </form>
-          </motion.div>
-        </div>
+            </a>
+            <a href={site.phoneHref} className="flex items-center gap-4 group cursor-pointer">
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
+                <Phone size={20} className="group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">PHONE</div>
+                <div className="text-sm font-medium text-white">{site.phone}</div>
+              </div>
+            </a>
+            <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
+                <MessageSquare size={20} className="group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">TELEGRAM</div>
+                <div className="text-sm font-medium text-white">{site.telegram}</div>
+              </div>
+            </a>
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
+                <Linkedin size={20} className="group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase">LINKEDIN</div>
+                <div className="text-sm font-medium text-white">{site.linkedinHandle}</div>
+              </div>
+            </a>
+          </div>
+        </motion.div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="w-8 h-8 rounded bg-brand-purple flex items-center justify-center font-bold text-sm text-white force-white">MB</div>
             <div>
-              <div className="text-[10px] font-mono tracking-widest text-brand-silver/40">© 2026 MOHAMMAD BAGHERSAD</div>
+              <div className="text-[10px] font-mono tracking-widest text-brand-silver/40">© 2026 {site.name.toUpperCase()}</div>
               <div className="text-[10px] text-brand-silver/50">Engineering portfolio for robotics, embedded systems, and control applications.</div>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <a href="https://github.com/mmd-bsd" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="text-brand-silver/50 hover:text-white transition-colors"><Github size={18} /></a>
-            <a href="https://www.linkedin.com/in/mohammad-baghersad/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="text-brand-silver/50 hover:text-white transition-colors"><Linkedin size={18} /></a>
-            <a href="/CV-Mohammad-Baghersad.pdf" download className="rounded-full border border-white/10 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-brand-silver/60 hover:text-white hover:border-brand-purple transition-all">
+            <a href={site.github} aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="text-brand-silver/50 hover:text-white transition-colors"><Github size={18} /></a>
+            <a href={site.linkedin} aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="text-brand-silver/50 hover:text-white transition-colors"><Linkedin size={18} /></a>
+            <a href={site.cvPath} download className="rounded-full border border-white/10 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-brand-silver/60 hover:text-white hover:border-brand-purple transition-all">
               Download CV
             </a>
           </div>
@@ -200,6 +83,7 @@ const Footer = () => {
             whileHover={{ y: -5 }}
             onClick={scrollToTop}
             className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-brand-silver/50 hover:text-white hover:border-white transition-all"
+            aria-label="Scroll to top"
           >
             <ArrowUp size={18} />
           </motion.button>

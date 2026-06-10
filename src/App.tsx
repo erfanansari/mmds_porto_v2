@@ -3,14 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ProjectGallery from './components/ProjectGallery';
-import ProjectDetail from './components/ProjectDetail';
-import SkillsResearch from './components/SkillsResearch';
-import Footer from './components/Footer';
 import { projects } from './data/projects';
+
+const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
+const SkillsResearch = lazy(() => import('./components/SkillsResearch'));
+const Footer = lazy(() => import('./components/Footer'));
+
+const SectionFallback = () => (
+  <div className="min-h-[12rem] animate-pulse bg-brand-black" aria-hidden="true" />
+);
 
 export default function App() {
   const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
@@ -80,13 +85,23 @@ export default function App() {
       <main>
         {!selectedProject && <Hero />}
         {selectedProject ? (
-          <ProjectDetail project={selectedProject} onBack={closeProject} />
+          <Suspense fallback={<SectionFallback />}>
+            <ProjectDetail project={selectedProject} onBack={closeProject} />
+          </Suspense>
         ) : (
           <ProjectGallery onProjectSelect={openProject} />
         )}
-        <SkillsResearch />
+        {!selectedProject && (
+          <Suspense fallback={<SectionFallback />}>
+            <SkillsResearch />
+          </Suspense>
+        )}
       </main>
-      <Footer />
+      {!selectedProject && (
+        <Suspense fallback={<SectionFallback />}>
+          <Footer />
+        </Suspense>
+      )}
     </div>
   );
 }

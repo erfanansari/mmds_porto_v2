@@ -1,7 +1,8 @@
+import type { ElementType } from 'react';
 import { motion } from 'motion/react';
 import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck, GraduationCap, Building, BookOpen } from 'lucide-react';
 
-const SkillCategory = ({ title, skills, icon: Icon }: { title: string, skills: string[], icon: React.ElementType }) => (
+const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: string[]; icon: ElementType }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -96,10 +97,10 @@ const SkillsResearch = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden bg-brand-purple-light/5 dark:bg-purple-400/5 border border-brand-purple-light/10 dark:border-purple-400/10 p-3 sm:p-4 lg:p-6 rounded-3xl mx-auto w-full"
+            className="relative overflow-hidden bg-brand-purple-light/5 border border-brand-purple-light/10 p-3 sm:p-4 lg:p-6 rounded-3xl mx-auto w-full"
           >
             <div className="mb-12">
-              <div className="text-brand-purple-light dark:text-purple-400 font-mono text-[11px] md:text-xs tracking-widest uppercase mb-3">Education</div>
+              <div className="text-brand-purple-light font-mono text-[11px] md:text-xs tracking-widest uppercase mb-3">Education</div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
             </div>
 
@@ -110,14 +111,14 @@ const SkillsResearch = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 hover:border-brand-purple-light transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 to-transparent"
               >
                 <div className="flex gap-4 items-start">
-                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
-                    <GraduationCap size={16} className="text-brand-purple-light dark:text-purple-400" />
+                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
+                    <GraduationCap size={16} className="text-brand-purple-light" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2 leading-none">
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light mb-2 leading-none">
                       <span>Bachelor's Degree</span>
                       <span className="block">2019-2023</span>
                     </div>
@@ -133,14 +134,14 @@ const SkillsResearch = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 hover:border-brand-purple-light transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 to-transparent"
               >
                 <div className="flex gap-4 items-start">
-                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
-                    <Building size={16} className="text-brand-purple-light dark:text-purple-400" />
+                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
+                    <Building size={16} className="text-brand-purple-light" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2 leading-none">
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light mb-2 leading-none">
                       <span>Master's Degree</span>
                       <span className="block">2024-2026</span>
                     </div>
@@ -156,14 +157,14 @@ const SkillsResearch = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 dark:border-purple-400/30 hover:border-brand-purple-light dark:hover:border-purple-400 transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 dark:from-purple-400/20 to-transparent"
+                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 hover:border-brand-purple-light transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 to-transparent"
               >
                 <div className="flex gap-4 items-start">
-                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 dark:bg-purple-400/25 border border-brand-purple-light/40 dark:border-purple-400/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 dark:group-hover:bg-purple-400/50 transition-all">
-                    <BookOpen size={16} className="text-brand-purple-light dark:text-purple-400" />
+                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
+                    <BookOpen size={16} className="text-brand-purple-light" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light dark:text-purple-400 mb-2 leading-none">
+                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light mb-2 leading-none">
                       <span>PhD Candidate</span>
                       <span className="block">2026-Present</span>
                     </div>

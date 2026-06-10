@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Linkedin, ChevronRight, DownloadCloud } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
+import { site } from '../config/site';
 
 const Hero = () => {
   return (
@@ -67,7 +68,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              href="https://www.linkedin.com/in/mohammad-baghersad/"
+              href={site.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -77,7 +78,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              href="/CV-Mohammad-Baghersad.pdf"
+              href={site.cvPath}
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm text-white transition-all hover:bg-white/10"
               download
             >
