@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowLeft, Github, ExternalLink, Layers } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink } from 'lucide-react';
 import { ProjectData } from '../data/projects';
 
 interface ProjectDetailProps {

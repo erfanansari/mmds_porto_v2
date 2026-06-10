@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Github, Linkedin, Mail, Menu, X, Moon, Sun, Check } from 'lucide-react';
+import profileImg from '../assets/profile.webp';
 
 const navItems = [
   { label: 'ABOUT', href: '#about' },
   { label: 'PROJECTS', href: '#projects' },
   { label: 'SKILLS', href: '#skills' },
-  { label: 'EDUCATIONS', href: '#education' },
+  { label: 'EDUCATION', href: '#education' },
   { label: 'CONTACT', href: '#contact' }
 ];
 
@@ -64,24 +65,13 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-2xl overflow-hidden border border-brand-purple-light/30 glow-purple flex items-center justify-center bg-brand-purple">
             <img
-              src="/profile.webp"
+              src={profileImg}
               alt="Mohammad Baghersad"
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                const parent = e.currentTarget.parentElement;
-                if (parent) {
-                  parent.textContent = 'MB';
-                  parent.style.color = 'white';
-                  parent.style.fontSize = '0.875rem';
-                  parent.style.fontWeight = 'bold';
-                }
-              }}
             />
           </div>
           <div className="hidden sm:block">
-            <h1 className="text-sm font-semibold tracking-wider text-white">MOHAMMAD BAGHERSAD</h1>
+            <p className="text-sm font-semibold tracking-wider text-white">MOHAMMAD BAGHERSAD</p>
             <p className="text-[10px] text-brand-silver/50 font-mono uppercase tracking-[0.2em]">Robotics & Embedded Systems</p>
           </div>
         </div>

@@ -39,19 +39,24 @@ export default function App() {
   }, [selectedProject]);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#project-', '');
-      if (!hash) {
-        setActiveProjectId(null);
+    const syncProjectFromUrl = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#project-')) {
+        const slug = hash.slice('#project-'.length);
+        const matched = projects.find((project) => project.slug === slug);
+        setActiveProjectId(matched ? matched.id : null);
         return;
       }
-      const matched = projects.find((project) => project.slug === hash);
-      setActiveProjectId(matched ? matched.id : null);
+      setActiveProjectId(null);
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    syncProjectFromUrl();
+    window.addEventListener('hashchange', syncProjectFromUrl);
+    window.addEventListener('popstate', syncProjectFromUrl);
+    return () => {
+      window.removeEventListener('hashchange', syncProjectFromUrl);
+      window.removeEventListener('popstate', syncProjectFromUrl);
+    };
   }, []);
 
   const openProject = (projectId: number, slug: string) => {
