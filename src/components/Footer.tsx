@@ -1,10 +1,30 @@
-import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, ArrowUp, Phone, MessageSquare } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Github, Linkedin, Mail, ArrowUp, Phone, MessageSquare, Check } from 'lucide-react';
 import { site } from '../config/site';
 
 const Footer = () => {
+  const [emailCopied, setEmailCopied] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(site.email);
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = site.email;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    setEmailCopied(true);
+    window.setTimeout(() => setEmailCopied(false), 2000);
   };
 
   return (
@@ -21,17 +41,33 @@ const Footer = () => {
             <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">Stay Connected</h2>
 
             <div className="space-y-6">
-            <a href={`mailto:${site.email}`} className="flex items-center gap-4 group cursor-pointer">
+            <button type="button" onClick={copyEmail} className="flex w-full items-center gap-4 group cursor-pointer text-left" aria-label={emailCopied ? 'Email copied' : 'Copy email address'}>
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
-                <Mail size={20} className="group-hover:text-white transition-colors" />
+                {emailCopied
+                  ? <Check size={20} className="text-emerald-400 group-hover:text-white transition-colors" />
+                  : <Mail size={20} className="group-hover:text-white transition-colors" />}
               </div>
               <div>
                 <div className="text-[10px] font-mono tracking-widest uppercase text-accent">
                   EMAIL
                 </div>
-                <div className="text-sm font-medium text-white font-sans">{site.email}</div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-white font-sans">{site.email}</span>
+                  <AnimatePresence>
+                    {emailCopied && (
+                      <motion.span
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -6 }}
+                        className="whitespace-nowrap rounded-md bg-brand-purple px-2 py-0.5 text-[10px] font-semibold text-white"
+                      >
+                        Copied!
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
-            </a>
+            </button>
             <a href={site.phoneHref} className="flex items-center gap-4 group cursor-pointer">
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
                 <Phone size={20} className="group-hover:text-white transition-colors" />

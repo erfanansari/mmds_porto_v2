@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Menu, X, Moon, Sun } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Github, Linkedin, Mail, Menu, X, Moon, Sun, Check } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
 import { site } from '../config/site';
 
@@ -15,6 +15,24 @@ const navItems = [
 const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeToggle: () => void }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(site.email);
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = site.email;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    setEmailCopied(true);
+    window.setTimeout(() => setEmailCopied(false), 2000);
+  };
   useEffect(() => {
     const sections = navItems.map((item) => document.querySelector(item.href));
 
@@ -88,14 +106,29 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors">
             <Linkedin size={18} />
           </a>
-          <a
-            href={`mailto:${site.email}`}
-            className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors"
-            title={`Send email to ${site.email}`}
-            aria-label="Send email"
-          >
-            <Mail size={18} />
-          </a>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="rounded-full p-2 text-brand-silver/70 hover:text-white transition-colors"
+              title={emailCopied ? 'Copied!' : `Copy email: ${site.email}`}
+              aria-label={emailCopied ? 'Email copied' : 'Copy email address'}
+            >
+              {emailCopied ? <Check size={18} className="text-emerald-400" /> : <Mail size={18} />}
+            </button>
+            <AnimatePresence>
+              {emailCopied && (
+                <motion.span
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 6 }}
+                  className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-brand-purple px-2.5 py-1 text-[11px] font-semibold text-white shadow-lg"
+                >
+                  Copied!
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
           <button
             onClick={onThemeToggle}
             className="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-brand-silver/70 hover:text-white transition-colors"
