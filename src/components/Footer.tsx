@@ -12,15 +12,15 @@ const Footer = () => {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-brand-purple-light to-transparent opacity-30" />
 
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20 max-w-xl"
-        >
-          <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">Stay Connected</h2>
+        <div className="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-bold text-white mb-8 tracking-tight">Stay Connected</h2>
 
-          <div className="space-y-6">
+            <div className="space-y-6">
             <a href={`mailto:${site.email}`} className="flex items-center gap-4 group cursor-pointer">
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-purple group-hover:border-brand-purple transition-all duration-300">
                 <Mail size={20} className="group-hover:text-white transition-colors" />
@@ -59,8 +59,26 @@ const Footer = () => {
                 <div className="text-sm font-medium text-white">{site.linkedinHandle}</div>
               </div>
             </a>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="relative flex items-center justify-center"
+          >
+            <div className="absolute inset-0 bg-brand-purple/10 rounded-full blur-[80px] scale-75 pointer-events-none" />
+            <img
+              src="/robotics-illustration.svg"
+              alt=""
+              className="relative w-full max-w-md lg:max-w-lg h-auto"
+              loading="lazy"
+              decoding="async"
+            />
+          </motion.div>
+        </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
