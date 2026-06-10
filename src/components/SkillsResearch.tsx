@@ -100,7 +100,7 @@ const SkillsResearch = () => {
             className="relative overflow-hidden bg-brand-purple-light/5 border border-brand-purple-light/10 p-3 sm:p-4 lg:p-6 rounded-3xl mx-auto w-full"
           >
             <div className="mb-12">
-              <div className="text-brand-purple-light font-mono text-[11px] md:text-xs tracking-widest uppercase mb-3">Education</div>
+              <div className="text-accent font-mono text-[11px] md:text-xs tracking-widest uppercase mb-3">Education</div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
             </div>
 
@@ -115,15 +115,15 @@ const SkillsResearch = () => {
               >
                 <div className="flex gap-4 items-start">
                   <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
-                    <GraduationCap size={16} className="text-brand-purple-light" />
+                    <GraduationCap size={16} className="text-accent" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light mb-2 leading-none">
+                    <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2 leading-none">
                       <span>Bachelor's Degree</span>
-                      <span className="block">2019-2023</span>
+                      <span className="block text-muted font-medium normal-case tracking-normal mt-1">2019–2023</span>
                     </div>
                     <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechanical Engineering</h3>
-                    <p className="text-brand-silver/70">University of Isfahan</p>
+                    <p className="text-muted">University of Isfahan</p>
                   </div>
                 </div>
               </motion.div>
@@ -138,15 +138,15 @@ const SkillsResearch = () => {
               >
                 <div className="flex gap-4 items-start">
                   <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
-                    <Building size={16} className="text-brand-purple-light" />
+                    <Building size={16} className="text-accent" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light mb-2 leading-none">
+                    <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2 leading-none">
                       <span>Master's Degree</span>
-                      <span className="block">2024-2026</span>
+                      <span className="block text-muted font-medium normal-case tracking-normal mt-1">2024–2026</span>
                     </div>
                     <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
-                    <p className="text-brand-silver/70">Shahid Beheshti University </p>
+                    <p className="text-muted">Shahid Beheshti University</p>
                   </div>
                 </div>
               </motion.div>
@@ -161,15 +161,15 @@ const SkillsResearch = () => {
               >
                 <div className="flex gap-4 items-start">
                   <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
-                    <BookOpen size={16} className="text-brand-purple-light" />
+                    <BookOpen size={16} className="text-accent" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-brand-purple-light mb-2 leading-none">
+                    <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2 leading-none">
                       <span>PhD Candidate</span>
-                      <span className="block">2026-Present</span>
+                      <span className="block text-muted font-medium normal-case tracking-normal mt-1">2026–Present</span>
                     </div>
                     <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
-                    <p className="text-brand-silver/70">University of Tehran </p>
+                    <p className="text-muted">University of Tehran</p>
                   </div>
                 </div>
               </motion.div>

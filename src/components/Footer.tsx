@@ -26,7 +26,7 @@ const Footer = () => {
                 <Mail size={20} className="group-hover:text-white transition-colors" />
               </div>
               <div>
-                <div className="text-[10px] text-brand-silver/50 font-mono tracking-widest uppercase text-brand-purple">
+                <div className="text-[10px] font-mono tracking-widest uppercase text-accent">
                   EMAIL
                 </div>
                 <div className="text-sm font-medium text-white font-sans">{site.email}</div>

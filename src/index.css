@@ -4,8 +4,10 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
+  /* Dark mode (default): deep fills + bright accent for readable text */
   --color-brand-purple: #2d004d;
-  --color-brand-purple-light: #4b0082;
+  --color-brand-purple-light: #c4b5fd;
+  --color-brand-purple-deep: #4b0082;
   --color-brand-black: #0a0a0a;
   --color-brand-slate: #1a1a1a;
   --color-brand-silver: #e2e8f0;
@@ -35,7 +37,8 @@
     --color-brand-slate: #e2e8f0;
     --color-brand-silver: #0f172a;
     --color-brand-purple: #5b21b6;
-    --color-brand-purple-light: #7c3aed;
+    --color-brand-purple-light: #6d28d9;
+    --color-brand-purple-deep: #4c1d95;
   }
 
   body {
@@ -128,7 +131,15 @@
   }
   
   .glow-purple {
-    box-shadow: 0 0 20px rgba(75, 0, 130, 0.24);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-brand-purple-deep) 40%, transparent);
+  }
+
+  .text-accent {
+    color: var(--color-brand-purple-light);
+  }
+
+  .text-muted {
+    color: color-mix(in srgb, var(--color-brand-silver) 75%, transparent);
   }
   
   .btn-primary {

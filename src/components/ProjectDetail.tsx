@@ -36,7 +36,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             <div className="flex flex-wrap gap-3">
               <span className="text-[10px] uppercase tracking-[0.25em] bg-white/5 border border-white/10 text-brand-silver rounded-full px-4 py-2">{project.category}</span>
               {project.tags.slice(0, 3).map(tag => (
-                <span key={tag} className="text-[10px] uppercase tracking-[0.25em] bg-brand-purple/10 text-brand-purple rounded-full px-4 py-2">{tag}</span>
+                <span key={tag} className="text-[10px] uppercase tracking-[0.25em] bg-brand-purple/10 text-accent rounded-full px-4 py-2">{tag}</span>
               ))}
             </div>
           </div>
