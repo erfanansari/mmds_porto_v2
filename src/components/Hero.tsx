@@ -1,10 +1,15 @@
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Linkedin, ChevronRight, DownloadCloud } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
 import { site } from '../config/site';
-import ShaderBackground from '@/components/ui/shader-background';
-import { SplineScene } from '@/components/ui/splite';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { useIsVisible } from '@/hooks/useIsVisible';
+
+const ShaderBackground = lazy(() => import('@/components/ui/shader-background'));
+const SplineSceneLazy = lazy(() =>
+  import('@/components/ui/splite').then((m) => ({ default: m.SplineScene }))
+);
 
 const skillsList = [
   'STM32',
@@ -22,27 +27,43 @@ const Hero = () => {
   const engineerOpacity = useTransform(scrollY, [0, 300], [0.2, 0]);
   const engineerX = useTransform(scrollY, [0, 300], [0, -60]);
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const [heroRef, heroVisible] = useIsVisible(0.05);
+  const [splineDeferred, setSplineDeferred] = useState(false);
+
+  useEffect(() => {
+    if (heroVisible && !splineDeferred) {
+      const id = setTimeout(() => setSplineDeferred(true), 300);
+      return () => clearTimeout(id);
+    }
+  }, [heroVisible, splineDeferred]);
 
   return (
     <section
+      ref={heroRef}
       id="about"
       className="relative min-h-screen flex items-center px-6 md:px-12 pt-20 pb-16 overflow-hidden bg-brand-black"
     >
-      {/* 21st.dev WebGL Shader Background — desktop only */}
-      {isDesktop && <ShaderBackground />}
+      {/* 21st.dev WebGL Shader Background — desktop only, deferred */}
+      {isDesktop && (
+        <Suspense fallback={null}>
+          <ShaderBackground />
+        </Suspense>
+      )}
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-black/70 via-brand-black/40 to-brand-black/80 pointer-events-none" />
       <div className="absolute inset-0 z-0 bg-brand-black/20 pointer-events-none" />
 
-      {/* Spline 3D scene — desktop only */}
-      {isDesktop && (
+      {/* Spline 3D scene — desktop only, deferred after Hero visible */}
+      {isDesktop && splineDeferred && (
         <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
           <div className="w-full h-full opacity-25 pointer-events-auto">
-            <SplineScene
-              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-              className="w-full h-full"
-            />
+            <Suspense fallback={null}>
+              <SplineSceneLazy
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
+            </Suspense>
           </div>
         </div>
       )}
@@ -81,17 +102,11 @@ const Hero = () => {
               transition={{ duration: 0.5, type: 'spring', stiffness: 200, damping: 20 }}
               className="shrink-0 pointer-events-auto"
             >
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 group">
                 <motion.div
-                  animate={{
-                    scale: [1, 1.06, 1],
-                    opacity: [0.25, 0.55, 0.25],
-                  }}
-                  transition={{
-                    duration: 3.5,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
+                  initial={{ opacity: 0.25, scale: 1 }}
+                  whileHover={{ scale: 1.08, opacity: 0.55 }}
+                  transition={{ duration: 0.6 }}
                   className="absolute -inset-4 rounded-full bg-brand-purple-light/15 blur-2xl"
                 />
                 <div className="relative rounded-full overflow-hidden border-4 border-white/10 glow-purple bg-brand-slate/50 group">

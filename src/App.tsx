@@ -5,16 +5,22 @@
 
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import ProjectGallery from './components/ProjectGallery';
 import { projects } from './data/projects';
 
+const Hero = lazy(() => import('./components/Hero'));
+const ProjectGallery = lazy(() => import('./components/ProjectGallery'));
 const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
 const SkillsResearch = lazy(() => import('./components/SkillsResearch'));
 const Footer = lazy(() => import('./components/Footer'));
 
 const SectionFallback = () => (
   <div className="min-h-[12rem] animate-pulse bg-brand-black" aria-hidden="true" />
+);
+
+const HeroFallback = () => (
+  <section id="about" className="min-h-screen bg-brand-black flex items-center justify-center">
+    <div className="w-10 h-10 border-2 border-white/20 border-t-brand-purple-light rounded-full animate-spin" />
+  </section>
 );
 
 export default function App() {
@@ -83,13 +89,19 @@ export default function App() {
     <div className="min-h-screen bg-brand-black text-brand-silver selection:bg-brand-purple/40">
       <Header theme={theme} onThemeToggle={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))} />
       <main>
-        {!selectedProject && <Hero />}
+        {!selectedProject && (
+          <Suspense fallback={<HeroFallback />}>
+            <Hero />
+          </Suspense>
+        )}
         {selectedProject ? (
           <Suspense fallback={<SectionFallback />}>
             <ProjectDetail project={selectedProject} onBack={closeProject} />
           </Suspense>
         ) : (
-          <ProjectGallery onProjectSelect={openProject} />
+          <Suspense fallback={<SectionFallback />}>
+            <ProjectGallery onProjectSelect={openProject} />
+          </Suspense>
         )}
         {!selectedProject && (
           <Suspense fallback={<SectionFallback />}>

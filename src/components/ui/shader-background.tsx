@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 
 const ShaderBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animRef = useRef<{ id: number; active: boolean }>({ id: 0, active: true });
 
   const vsSource = `
     attribute vec4 aVertexPosition;
@@ -183,9 +184,13 @@ const ShaderBackground = () => {
     resizeCanvas();
 
     const startTime = Date.now();
-    let animationId: number;
+    const anim = animRef.current;
 
     const render = () => {
+      if (!anim.active) {
+        anim.id = requestAnimationFrame(render);
+        return;
+      }
       const currentTime = (Date.now() - startTime) / 1000;
 
       gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -208,14 +213,30 @@ const ShaderBackground = () => {
       gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
 
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      animationId = requestAnimationFrame(render);
+      anim.id = requestAnimationFrame(render);
     };
 
-    animationId = requestAnimationFrame(render);
+    anim.id = requestAnimationFrame(render);
+
+    // Pause shader when canvas is not visible (scroll past hero, tab hidden)
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        anim.active = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    visibilityObserver.observe(canvas);
+
+    const handleVisibility = () => {
+      anim.active = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(anim.id);
+      visibilityObserver.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, []);
 

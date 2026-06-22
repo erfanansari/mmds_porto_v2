@@ -16,7 +16,8 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
   const [emailCopied, setEmailCopied] = useState(false);
-  const manualOverrideRef = useRef(false);
+  const overrideRef = useRef(false);
+  const settleRef = useRef(0);
 
   const copyEmail = async () => {
     try {
@@ -38,7 +39,13 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
     const sections = navItems.map((item) => document.querySelector(item.href));
 
     const updateActiveSection = () => {
-      if (manualOverrideRef.current) return;
+      if (overrideRef.current) {
+        clearTimeout(settleRef.current);
+        settleRef.current = window.setTimeout(() => {
+          overrideRef.current = false;
+        }, 120);
+        return;
+      }
       const scrollPos = window.scrollY + 120;
       let current = 'about';
       let closestDistance = Infinity;
@@ -61,7 +68,10 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
 
     updateActiveSection();
     window.addEventListener('scroll', updateActiveSection, { passive: true });
-    return () => window.removeEventListener('scroll', updateActiveSection);
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      clearTimeout(settleRef.current);
+    };
   }, []);
 
   return (
@@ -92,8 +102,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               href={item.href}
               onClick={() => {
                 setActiveSection(item.label.toLowerCase());
-                manualOverrideRef.current = true;
-                setTimeout(() => { manualOverrideRef.current = false; }, 600);
+                overrideRef.current = true;
               }}
               className={`transition-colors ${
                 activeSection === item.label.toLowerCase()
@@ -165,8 +174,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
                 onClick={() => {
                   setMenuOpen(false);
                   setActiveSection(item.label.toLowerCase());
-                  manualOverrideRef.current = true;
-                  setTimeout(() => { manualOverrideRef.current = false; }, 600);
+                  overrideRef.current = true;
                 }}
                 className={`block rounded-2xl px-4 py-3 transition-colors ${
                   activeSection === item.label.toLowerCase()

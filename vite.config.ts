@@ -20,8 +20,9 @@ export default defineConfig(({mode}) => {
     build: {
       rollupOptions: {
         output: {
-          manualChunks: {
-            framerMotion: ['framer-motion'],
+          manualChunks(id) {
+            if (id.includes('node_modules/framer-motion')) return 'framerMotion';
+            if (id.includes('node_modules/@splinetool')) return 'spline';
           },
         },
       },
