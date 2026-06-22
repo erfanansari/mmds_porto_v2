@@ -1,5 +1,5 @@
 import type { ElementType } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck, GraduationCap, Building, BookOpen } from 'lucide-react';
 
 const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: string[]; icon: ElementType }) => (

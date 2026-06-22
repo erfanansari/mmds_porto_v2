@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp, Phone, MessageSquare, Check } from 'lucide-react';
 import { site } from '../config/site';
 

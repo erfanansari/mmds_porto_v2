@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X, Moon, Sun, Check } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
 import { site } from '../config/site';
@@ -88,6 +88,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
             <a
               key={item.label}
               href={item.href}
+              onClick={() => setActiveSection(item.label.toLowerCase())}
               className={`transition-colors ${
                 activeSection === item.label.toLowerCase()
                   ? 'text-white underline underline-offset-4 decoration-brand-purple-light'
@@ -155,7 +156,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => { setMenuOpen(false); setActiveSection(item.label.toLowerCase()); }}
                 className={`block rounded-2xl px-4 py-3 transition-colors ${
                   activeSection === item.label.toLowerCase()
                     ? 'bg-brand-purple/10 text-white'

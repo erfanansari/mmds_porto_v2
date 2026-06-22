@@ -1,5 +1,5 @@
 import { useMemo, useState, type FC } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { ProjectData, projects } from '../data/projects';
 
