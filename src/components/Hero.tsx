@@ -4,6 +4,7 @@ import profileImg from '../assets/profile.webp';
 import { site } from '../config/site';
 import ShaderBackground from '@/components/ui/shader-background';
 import { SplineScene } from '@/components/ui/splite';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const skillsList = [
   'STM32',
@@ -20,28 +21,31 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const engineerOpacity = useTransform(scrollY, [0, 300], [0.2, 0]);
   const engineerX = useTransform(scrollY, [0, 300], [0, -60]);
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   return (
     <section
       id="about"
       className="relative min-h-screen flex items-center px-6 md:px-12 pt-20 pb-16 overflow-hidden bg-brand-black"
     >
-      {/* 21st.dev WebGL Shader Background */}
-      <ShaderBackground />
+      {/* 21st.dev WebGL Shader Background — desktop only */}
+      {isDesktop && <ShaderBackground />}
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-black/70 via-brand-black/40 to-brand-black/80 pointer-events-none" />
       <div className="absolute inset-0 z-0 bg-brand-black/20 pointer-events-none" />
 
-      {/* Spline 3D scene — full page background */}
-      <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
-        <div className="w-full h-full opacity-25 pointer-events-auto">
-          <SplineScene
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
+      {/* Spline 3D scene — desktop only */}
+      {isDesktop && (
+        <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
+          <div className="w-full h-full opacity-25 pointer-events-auto">
+            <SplineScene
+              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="w-full h-full"
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Fade-to-black mask at bottom — smooth scroll transition */}
       <div className="absolute bottom-0 left-0 right-0 h-40 z-30 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent pointer-events-none" />

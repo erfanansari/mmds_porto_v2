@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X, Moon, Sun, Check } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
@@ -16,6 +16,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
   const [emailCopied, setEmailCopied] = useState(false);
+  const manualOverrideRef = useRef(false);
 
   const copyEmail = async () => {
     try {
@@ -37,6 +38,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
     const sections = navItems.map((item) => document.querySelector(item.href));
 
     const updateActiveSection = () => {
+      if (manualOverrideRef.current) return;
       const scrollPos = window.scrollY + 120;
       let current = 'about';
       let closestDistance = Infinity;
@@ -88,7 +90,11 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
             <a
               key={item.label}
               href={item.href}
-              onClick={() => setActiveSection(item.label.toLowerCase())}
+              onClick={() => {
+                setActiveSection(item.label.toLowerCase());
+                manualOverrideRef.current = true;
+                setTimeout(() => { manualOverrideRef.current = false; }, 600);
+              }}
               className={`transition-colors ${
                 activeSection === item.label.toLowerCase()
                   ? 'text-white underline underline-offset-4 decoration-brand-purple-light'
@@ -156,7 +162,12 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => { setMenuOpen(false); setActiveSection(item.label.toLowerCase()); }}
+                onClick={() => {
+                  setMenuOpen(false);
+                  setActiveSection(item.label.toLowerCase());
+                  manualOverrideRef.current = true;
+                  setTimeout(() => { manualOverrideRef.current = false; }, 600);
+                }}
                 className={`block rounded-2xl px-4 py-3 transition-colors ${
                   activeSection === item.label.toLowerCase()
                     ? 'bg-brand-purple/10 text-white'
