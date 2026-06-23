@@ -42,7 +42,7 @@ const Hero = () => {
     <section
       ref={heroRef}
       id="about"
-      className="relative min-h-screen flex items-center px-6 md:px-12 pt-20 pb-16 overflow-hidden bg-brand-black"
+      className="relative min-h-screen flex items-center px-6 md:px-12 pt-14 pb-16 overflow-hidden bg-brand-black"
     >
       {/* 21st.dev WebGL Shader Background — desktop only, deferred */}
       {isDesktop && (
@@ -81,7 +81,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 max-w-7xl mx-auto w-full flex pt-40 pb-16 pointer-events-none"
+        className="relative z-10 max-w-7xl mx-auto w-full flex pt-24 pb-16 pointer-events-none"
       >
         <div className="w-full">
           {/* --- Name + Photo row --- */}

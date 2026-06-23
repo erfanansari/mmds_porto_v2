@@ -89,7 +89,7 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="hidden sm:block">
+          <div className="hidden sm:block -mt-1">
             <p className="text-sm font-semibold tracking-wider text-white">{site.name.toUpperCase()}</p>
             <p className="text-[10px] text-brand-silver/50 font-mono uppercase tracking-[0.2em]">{site.title}</p>
           </div>

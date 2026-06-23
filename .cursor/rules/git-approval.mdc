@@ -1,0 +1,22 @@
+---
+description: Always ask for user approval before git commit and git push
+alwaysApply: true
+---
+
+# Git Commit & Push Approval
+
+**CRITICAL: Never commit or push without explicit user approval.**
+
+## Rules
+
+1. **Before `git commit`**: Always ask the user for confirmation. Show what will be committed (summary of changes) and ask "Shall I commit these changes?"
+
+2. **Before `git push`**: Always ask the user for confirmation. Show the branch and ask "Shall I push to remote?"
+
+3. **Never skip these steps** — even if the user previously said "commit" or "push" in a general sense. Each commit and push requires a fresh approval at that moment.
+
+## Example workflow
+
+1. After making changes, say: "Here are the changes: [summary]. Would you like me to commit them?"
+2. After commit, say: "Committed. Would you like me to push to remote?"
+3. Only proceed with commit/push after the user explicitly says yes.
