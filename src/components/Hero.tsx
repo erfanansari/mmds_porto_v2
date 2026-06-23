@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Linkedin, ChevronRight, DownloadCloud } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
+import splineBg from '../assets/spline-bg.png';
 import { site } from '../config/site';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useIsVisible } from '@/hooks/useIsVisible';
@@ -54,18 +55,27 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-black/70 via-brand-black/40 to-brand-black/80 pointer-events-none" />
       <div className="absolute inset-0 z-0 bg-brand-black/20 pointer-events-none" />
 
-      {/* Spline 3D scene — desktop only, deferred after Hero visible */}
-      {isDesktop && splineDeferred && (
-        <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
-          <div className="w-full h-full opacity-25 pointer-events-auto">
-            <Suspense fallback={null}>
-              <SplineSceneLazy
-                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="w-full h-full"
-              />
-            </Suspense>
+      {/* Spline 3D scene — desktop: live, mobile: static screenshot */}
+      {isDesktop ? (
+        splineDeferred && (
+          <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
+            <div className="w-full h-full opacity-25 pointer-events-auto">
+              <Suspense fallback={null}>
+                <SplineSceneLazy
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </Suspense>
+            </div>
           </div>
-        </div>
+        )
+      ) : (
+        <img
+          src={splineBg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 z-[1] w-full h-full object-cover opacity-25 pointer-events-none"
+        />
       )}
 
       {/* Fade-to-black mask at bottom — smooth scroll transition */}
