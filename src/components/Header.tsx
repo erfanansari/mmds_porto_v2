@@ -10,7 +10,9 @@ const navItems = [
   { label: 'SKILLS', href: '#skills' },
   { label: 'EDUCATION', href: '#education' },
   { label: 'CONTACT', href: '#contact' }
-];
+] as const;
+
+const sectionId = (href: string) => href.slice(1);
 
 const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeToggle: () => void }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,30 +37,32 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
     setEmailCopied(true);
     window.setTimeout(() => setEmailCopied(false), 2000);
   };
-  useEffect(() => {
-    const sections = navItems.map((item) => document.querySelector(item.href));
+  const holdActiveOverride = () => {
+    overrideRef.current = true;
+    clearTimeout(settleRef.current);
+    settleRef.current = window.setTimeout(() => {
+      overrideRef.current = false;
+    }, 900);
+  };
 
+  useEffect(() => {
     const updateActiveSection = () => {
-      if (overrideRef.current) {
-        clearTimeout(settleRef.current);
-        settleRef.current = window.setTimeout(() => {
-          overrideRef.current = false;
-        }, 120);
-        return;
-      }
+      if (overrideRef.current) return;
+
       const scrollPos = window.scrollY + 120;
       let current = 'about';
       let closestDistance = Infinity;
 
-      sections.forEach((section, index) => {
-        if (section) {
-          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-          if (sectionTop <= scrollPos) {
-            const distance = scrollPos - sectionTop;
-            if (distance < closestDistance) {
-              closestDistance = distance;
-              current = navItems[index].label.toLowerCase();
-            }
+      navItems.forEach((item) => {
+        const section = document.querySelector(item.href);
+        if (!section) return;
+
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        if (sectionTop <= scrollPos) {
+          const distance = scrollPos - sectionTop;
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            current = sectionId(item.href);
           }
         }
       });
@@ -101,11 +105,11 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
               key={item.label}
               href={item.href}
               onClick={() => {
-                setActiveSection(item.label.toLowerCase());
-                overrideRef.current = true;
+                setActiveSection(sectionId(item.href));
+                holdActiveOverride();
               }}
               className={`transition-colors ${
-                activeSection === item.label.toLowerCase()
+                activeSection === sectionId(item.href)
                   ? 'text-white underline underline-offset-4 decoration-brand-purple-light'
                   : 'hover:text-white'
               }`}
@@ -173,11 +177,11 @@ const Header = ({ theme, onThemeToggle }: { theme: 'dark' | 'light'; onThemeTogg
                 href={item.href}
                 onClick={() => {
                   setMenuOpen(false);
-                  setActiveSection(item.label.toLowerCase());
-                  overrideRef.current = true;
+                  setActiveSection(sectionId(item.href));
+                  holdActiveOverride();
                 }}
                 className={`block rounded-2xl px-4 py-3 transition-colors ${
-                  activeSection === item.label.toLowerCase()
+                  activeSection === sectionId(item.href)
                     ? 'bg-brand-purple/10 text-white'
                     : 'hover:bg-white/5 hover:text-white'
                 }`}

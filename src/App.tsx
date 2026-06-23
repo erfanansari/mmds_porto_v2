@@ -18,7 +18,7 @@ const SectionFallback = () => (
 );
 
 const HeroFallback = () => (
-  <section id="about" className="min-h-screen bg-brand-black flex items-center justify-center">
+  <section className="min-h-screen bg-brand-black flex items-center justify-center" aria-hidden="true">
     <div className="w-10 h-10 border-2 border-white/20 border-t-brand-purple-light rounded-full animate-spin" />
   </section>
 );
