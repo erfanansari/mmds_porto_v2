@@ -22,7 +22,6 @@ export default defineConfig(({mode}) => {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules/framer-motion')) return 'framerMotion';
-            if (id.includes('node_modules/@splinetool')) return 'spline';
           },
         },
       },

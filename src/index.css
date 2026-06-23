@@ -141,6 +141,24 @@
   .text-muted {
     color: color-mix(in srgb, var(--color-brand-silver) 75%, transparent);
   }
+
+  /* Hero 3D scene — pure CSS depth + parallax (no WebGL, no media) */
+  .hero3d-root {
+    perspective: 1100px;
+    perspective-origin: 50% 42%;
+  }
+  .hero3d-scene {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .hero3d-layer {
+    transform-style: preserve-3d;
+  }
+  /* Pause all ambient animation when offscreen, tab-hidden, or reduced-motion */
+  .hero3d-scene[data-paused='true'],
+  .hero3d-scene[data-paused='true'] * {
+    animation-play-state: paused !important;
+  }
   
   .btn-primary {
     @apply px-8 py-3 bg-brand-purple hover:bg-brand-purple-light text-white rounded-full transition-all duration-300 flex items-center gap-2 border border-brand-purple-light/50 font-medium;
@@ -192,4 +210,12 @@
 @keyframes geo-spin-slow {
   from { transform: translate(-50%, -50%) rotate(0deg); }
   to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes hero3d-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes hero3d-spin-rev {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }

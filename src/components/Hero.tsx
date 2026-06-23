@@ -1,16 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Linkedin, ChevronRight, DownloadCloud } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
-import GeometricBg from '@/components/ui/geometric-bg';
+import Hero3DScene from '@/components/ui/hero-3d-scene';
 import { site } from '../config/site';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { useIsVisible } from '@/hooks/useIsVisible';
-
-const ShaderBackground = lazy(() => import('@/components/ui/shader-background'));
-const SplineSceneLazy = lazy(() =>
-  import('@/components/ui/splite').then((m) => ({ default: m.SplineScene }))
-);
 
 const skillsList = [
   'STM32',
@@ -27,51 +19,17 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const engineerOpacity = useTransform(scrollY, [0, 300], [0.2, 0]);
   const engineerX = useTransform(scrollY, [0, 300], [0, -60]);
-  const isDesktop = useMediaQuery('(min-width: 768px)');
-  const [heroRef, heroVisible] = useIsVisible(0.05);
-  const [splineDeferred, setSplineDeferred] = useState(false);
-
-  useEffect(() => {
-    if (heroVisible && !splineDeferred) {
-      const id = setTimeout(() => setSplineDeferred(true), 300);
-      return () => clearTimeout(id);
-    }
-  }, [heroVisible, splineDeferred]);
 
   return (
     <section
-      ref={heroRef}
       id="about"
       className="relative min-h-screen flex items-center px-6 md:px-12 pt-14 pb-16 overflow-hidden bg-brand-black"
     >
-      {/* 21st.dev WebGL Shader Background — desktop only, deferred */}
-      {isDesktop && (
-        <Suspense fallback={null}>
-          <ShaderBackground />
-        </Suspense>
-      )}
+      {/* Lightweight CSS 3D background (depth layers + mouse parallax, no WebGL) */}
+      <Hero3DScene />
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-black/70 via-brand-black/40 to-brand-black/80 pointer-events-none" />
-      <div className="absolute inset-0 z-0 bg-brand-black/20 pointer-events-none" />
-
-      {/* Spline 3D scene — desktop: live, mobile: static screenshot */}
-      {isDesktop ? (
-        splineDeferred && (
-          <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
-            <div className="w-full h-full opacity-25 pointer-events-auto">
-              <Suspense fallback={null}>
-                <SplineSceneLazy
-                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                  className="w-full h-full"
-                />
-              </Suspense>
-            </div>
-          </div>
-        )
-      ) : (
-        <GeometricBg />
-      )}
+      {/* Gradient overlay for depth behind the floating forms */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-black/50 via-brand-black/20 to-brand-black/55 pointer-events-none" />
 
       {/* Fade-to-black mask at bottom — smooth scroll transition */}
       <div className="absolute bottom-0 left-0 right-0 h-40 z-30 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent pointer-events-none" />
