@@ -75,7 +75,7 @@ const Hero = () => {
             src={splineBg}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover opacity-25"
+            className="w-full h-full object-contain scale-75 opacity-25"
           />
           <div className="absolute bottom-0 left-0 right-0 h-60 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent" />
         </div>
