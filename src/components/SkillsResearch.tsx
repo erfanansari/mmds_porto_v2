@@ -1,4 +1,4 @@
-import type { ElementType } from 'react';
+import type { ElementType, FC } from 'react';
 import { motion } from 'framer-motion';
 import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck, GraduationCap, Building, BookOpen } from 'lucide-react';
 
@@ -23,6 +23,79 @@ const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: s
     </ul>
   </motion.div>
 );
+
+type EducationEntry = {
+  degree: string;
+  field: string;
+  institution: string;
+  period: string;
+  icon: ElementType;
+};
+
+const education: EducationEntry[] = [
+  {
+    degree: "Bachelor's Degree",
+    field: 'Mechanical Engineering',
+    institution: 'University of Isfahan',
+    period: '2019 – 2023',
+    icon: GraduationCap,
+  },
+  {
+    degree: "Master's Degree",
+    field: 'Mechatronics Engineering',
+    institution: 'Shahid Beheshti University',
+    period: '2024 – 2026',
+    icon: Building,
+  },
+  {
+    degree: 'PhD Candidate',
+    field: 'Mechatronics Engineering',
+    institution: 'University of Tehran',
+    period: '2026 – Present',
+    icon: BookOpen,
+  },
+];
+
+const EducationStage: FC<{ item: EducationEntry; index: number; isLast: boolean }> = ({ item, index, isLast }) => {
+  const Icon = item.icon;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.15 * index, duration: 0.5 }}
+      className="relative flex flex-col items-center text-center"
+    >
+      {/* Year */}
+      <div className="h-5 flex items-center mb-5 text-xs font-mono uppercase tracking-[0.25em] text-brand-purple-light whitespace-nowrap">
+        {item.period}
+      </div>
+
+      {/* Node */}
+      <div className="relative">
+        {/* Pulsing ring on the current (last) stage */}
+        {isLast && (
+          <motion.span
+            className="absolute inset-0 rounded-full border border-brand-purple-light/50"
+            animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+            aria-hidden="true"
+          />
+        )}
+        <div className="relative w-14 h-14 rounded-full bg-brand-slate/70 border border-brand-purple-light/40 flex items-center justify-center text-brand-purple-light shadow-lg shadow-brand-purple/20">
+          <Icon size={22} />
+        </div>
+      </div>
+
+      {/* Details */}
+      <div className="mt-5 max-w-[15rem]">
+        <div className="text-sm font-bold uppercase tracking-wider text-white">{item.degree}</div>
+        <div className="text-sm text-brand-silver/70 mt-1">{item.field}</div>
+        <div className="text-xs text-brand-silver/50 mt-1.5">{item.institution}</div>
+      </div>
+    </motion.div>
+  );
+};
 
 const SkillsResearch = () => {
   return (
@@ -92,89 +165,26 @@ const SkillsResearch = () => {
         </div>
 
         {/* Education Section */}
-        <div id="education" className="pt-24 border-t border-white/5 px-3 sm:px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative overflow-hidden bg-brand-purple-light/5 border border-brand-purple-light/10 p-3 sm:p-4 lg:p-6 rounded-3xl mx-auto w-full"
-          >
-            <div className="mb-12">
-              <div className="text-accent font-mono text-[11px] md:text-xs tracking-widest uppercase mb-3">Education</div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
-            </div>
+        <div id="education" className="pt-24 border-t border-white/5">
+          <div className="mb-14">
+            <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Education</div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Academic Background</h2>
+          </div>
 
-            <div className="grid gap-2 grid-cols-1">
-              {/* Bachelor's */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 hover:border-brand-purple-light transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 to-transparent"
-              >
-                <div className="flex gap-4 items-start">
-                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
-                    <GraduationCap size={16} className="text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2 leading-none">
-                      <span>Bachelor's Degree</span>
-                      <span className="block text-muted font-medium normal-case tracking-normal mt-1">2019–2023</span>
-                    </div>
-                    <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechanical Engineering</h3>
-                    <p className="text-muted">University of Isfahan</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Master's */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 hover:border-brand-purple-light transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 to-transparent"
-              >
-                <div className="flex gap-4 items-start">
-                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
-                    <Building size={16} className="text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2 leading-none">
-                      <span>Master's Degree</span>
-                      <span className="block text-muted font-medium normal-case tracking-normal mt-1">2024–2026</span>
-                    </div>
-                    <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
-                    <p className="text-muted">Shahid Beheshti University</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* PhD */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="group relative glass-card p-4 sm:p-5 border border-brand-purple-light/30 hover:border-brand-purple-light transition-all duration-300 bg-gradient-to-br from-brand-purple-light/20 to-transparent"
-              >
-                <div className="flex gap-4 items-start">
-                  <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-purple-light/25 border border-brand-purple-light/40 flex items-center justify-center group-hover:bg-brand-purple-light/50 transition-all">
-                    <BookOpen size={16} className="text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-widest text-accent mb-2 leading-none">
-                      <span>PhD Candidate</span>
-                      <span className="block text-muted font-medium normal-case tracking-normal mt-1">2026–Present</span>
-                    </div>
-                    <h3 className="text-base sm:text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Mechatronics Engineering</h3>
-                    <p className="text-muted">University of Tehran</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6">
+            {/* Desktop connector drawn through the nodes */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+              className="hidden md:block absolute left-[16.66%] right-[16.66%] top-[4.25rem] h-0.5 origin-left bg-gradient-to-r from-brand-purple-light/10 via-brand-purple-light/40 to-brand-purple-light/10"
+              aria-hidden="true"
+            />
+            {education.map((item, index) => (
+              <EducationStage key={item.institution} item={item} index={index} isLast={index === education.length - 1} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
