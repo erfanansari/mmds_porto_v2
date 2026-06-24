@@ -57,13 +57,13 @@ There is no `react-router`. `src/App.tsx` holds all top-level state:
 
 ### Performance patterns (deliberate — preserve them)
 - **Code-splitting:** every section except `Header` is `React.lazy` + `Suspense` in `App.tsx`. New heavy sections should follow the same pattern with a `SectionFallback`.
-- **No WebGL / no heavy 3D libraries.** The hero background is `src/components/ui/hero-3d-scene.tsx` — a pure CSS + `requestAnimationFrame` depth/parallax scene (no WebGL, no media asset). It deliberately replaced an earlier Spline (WebGL) + raw-WebGL-shader setup that shipped a 4.4 MB JS chunk and ran two GPU contexts (which broke the site on weak devices). It tiers by capability: `prefers-reduced-motion` → static scene; low-power signals (`saveData`, slow network, low cores/memory) → ambient motion only (parallax off); otherwise → ambient motion + mouse parallax. It also pauses all animation when the hero leaves the viewport (`IntersectionObserver`) or the tab is hidden (`visibilitychange`), set via the `data-paused` attribute on `.hero3d-scene`.
+- **No WebGL / no heavy 3D libraries.** The hero background is a single static, optimized image — `src/assets/hero-robot.jpg` (a dark, moody humanoid-robot photo, ~98 kB, full-bleed `object-cover` in `Hero.tsx`) with brand-black gradient overlays for text contrast. It replaced an earlier pure-CSS depth/parallax scene (`src/components/ui/hero-3d-scene.tsx`, now **removed**), which itself replaced a Spline/WebGL setup that shipped a 4.4 MB JS chunk and ran two GPU contexts (which broke the site on weak devices). Static = fast, GPU-free, works on every device. Image source: Pexels (free for commercial use, no attribution required).
 - `vite.config.ts` splits `framer-motion` into its own manual chunk.
 
 ### Conventions & helpers
 - Path alias **`@/` → `src/`** (configured in both `tsconfig.json` and `vite.config.ts`). Both `@/...` and relative imports appear in the codebase.
 - `src/lib/utils.ts` → `cn()` (clsx + tailwind-merge). Use it when composing conditional Tailwind classes.
-- `src/hooks/`: `useMediaQuery` (used by the hero scene for reduced-motion / fine-pointer detection).
+- `src/hooks/`: `useMediaQuery` (generic `prefers-*` / pointer media-query hook).
 - Animation is **Framer Motion**, globally wrapped with `MotionConfig reducedMotion="user"` in `main.tsx`; `index.css` also disables transitions/animations under `prefers-reduced-motion`. Respect reduced-motion when adding motion.
 
 ### `vite.config.ts` notes

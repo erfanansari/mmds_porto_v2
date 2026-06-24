@@ -1,26 +1,47 @@
 import type { ElementType, FC } from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Settings, Brain, Radio, Zap, ShieldCheck, GraduationCap, Building, BookOpen } from 'lucide-react';
+import { Cpu, Settings, Brain, Radio, GraduationCap, Building, BookOpen } from 'lucide-react';
 
-const SkillCategory = ({ title, skills, icon: Icon }: { title: string; skills: string[]; icon: ElementType }) => (
+const SkillCategory = ({
+  title,
+  skills,
+  icon: Icon,
+  featured = false,
+  className = '',
+}: {
+  title: string;
+  skills: string[];
+  icon: ElementType;
+  featured?: boolean;
+  className?: string;
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="p-8 glass-card border-none bg-brand-slate/30 group hover:bg-brand-slate/50 transition-all duration-500"
+    transition={{ duration: 0.5 }}
+    className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-brand-slate/40 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-brand-purple-light/40 hover:bg-brand-slate/60 ${featured ? 'lg:p-9' : ''} ${className}`}
   >
-    <div className="w-12 h-12 rounded-xl bg-brand-purple/20 flex items-center justify-center mb-6 text-brand-purple-light group-hover:bg-brand-purple group-hover:text-white transition-all">
-      <Icon size={24} />
+    {/* Top accent line — reveals on hover */}
+    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-purple-light/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+    <div className="mb-6 flex items-center gap-4">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-purple/15 text-brand-purple-light ring-1 ring-inset ring-brand-purple-light/20 transition-all duration-500 group-hover:bg-brand-purple group-hover:text-white">
+        <Icon size={22} strokeWidth={1.75} />
+      </div>
+      <h3 className={`font-bold tracking-tight text-white ${featured ? 'text-2xl' : 'text-xl'}`}>{title}</h3>
     </div>
-    <h3 className="text-xl font-bold text-white mb-4 tracking-tight">{title}</h3>
-    <ul className="space-y-3">
-      {skills.map((skill, index) => (
-        <li key={index} className="flex items-center gap-2 text-sm text-brand-silver/60">
-          <div className="w-1 h-1 rounded-full bg-brand-purple-light" />
+
+    <div className="mt-auto flex flex-wrap content-start gap-2">
+      {skills.map((skill) => (
+        <span
+          key={skill}
+          className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[11px] tracking-wide text-brand-silver/60 transition-colors duration-300 group-hover:border-white/20 group-hover:text-brand-silver/85"
+        >
           {skill}
-        </li>
+        </span>
       ))}
-    </ul>
+    </div>
   </motion.div>
 );
 
@@ -104,62 +125,44 @@ const SkillsResearch = () => {
       <div className="absolute top-0 right-0 w-96 h-96 bg-brand-purple/10 rounded-full blur-[100px] -mr-48 -mt-48" />
       
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24">
-          <div className="lg:col-span-1">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-brand-purple-light font-mono text-xs tracking-widest uppercase mb-2">Capabilities</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">Technical <br />Core</h2>
-              <p className="text-brand-silver/60 text-sm leading-relaxed mb-8">
-                Mastery of cross-disciplinary engineering principles, combining traditional mechanical engineering with modern AI and control systems.
-              </p>
-              
-              <div className="space-y-4 pt-6 border-t border-white/5">
-                <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center group-hover:border-brand-purple-light group-hover:text-brand-purple-light transition-all">
-                    <Zap size={18} />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-white">SYSTEM INTEGRATION</div>
-                    <div className="text-[10px] text-brand-silver/40">Hardware-in-the-loop testing</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center group-hover:border-brand-purple-light group-hover:text-brand-purple-light transition-all">
-                    <ShieldCheck size={18} />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-white">RELIABILITY ENGINEERING</div>
-                    <div className="text-[10px] text-brand-silver/40">Fault-tolerant architecture</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+        {/* Technical Core — header + asymmetric bento (featured = his core domains) */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-10 max-w-2xl lg:mb-14"
+          >
+            <div className="font-mono text-xs uppercase tracking-[0.3em] text-brand-purple-light">// capabilities</div>
+            <h2 className="mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">Technical Core</h2>
+          </motion.div>
 
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <SkillCategory 
-              title="Robotics" 
-              icon={Settings} 
-              skills={["SolidWorks 3D Design", "Altium Designer", "Kinematics & Dynamics", "Gazebo / Webots"]} 
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-6">
+            <SkillCategory
+              title="Robotics"
+              icon={Settings}
+              featured
+              className="sm:col-span-2 lg:col-span-4"
+              skills={["SolidWorks 3D Design", "Altium Designer", "Kinematics & Dynamics", "Gazebo / Webots"]}
             />
-            <SkillCategory 
-              title="Control Systems" 
-              icon={Radio} 
-              skills={["MPC & Optimal Control", "PID / Kalmann Filters", "State Estimation", "MATLAB / Simulink"]} 
+            <SkillCategory
+              title="Control Systems"
+              icon={Radio}
+              className="lg:col-span-2"
+              skills={["MPC & Optimal Control", "PID / Kalman Filters", "State Estimation", "MATLAB / Simulink"]}
             />
-            <SkillCategory 
-              title="AI & Vision" 
-              icon={Brain} 
-              skills={["Deep Learning (PyTorch)", "Point Cloud Processing", "Object Detection", "Sensor Fusion"]} 
+            <SkillCategory
+              title="AI & Vision"
+              icon={Brain}
+              className="lg:col-span-2"
+              skills={["Deep Learning (PyTorch)", "Point Cloud Processing", "Object Detection", "Sensor Fusion"]}
             />
-            <SkillCategory 
-              title="Embedded Systems" 
-              icon={Cpu} 
-              skills={["C / C++ / Python", "Real-time OS (RTOS)", "STM32 Microcontrollers", "PIC Microcontrollers", "Raspberry Pi"]} 
+            <SkillCategory
+              title="Embedded Systems"
+              icon={Cpu}
+              featured
+              className="sm:col-span-2 lg:col-span-4"
+              skills={["C / C++ / Python", "Real-time OS (RTOS)", "STM32", "PIC", "Raspberry Pi"]}
             />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Linkedin, ChevronRight, DownloadCloud } from 'lucide-react';
 import profileImg from '../assets/profile.webp';
-import Hero3DScene from '@/components/ui/hero-3d-scene';
+import heroRobot from '../assets/hero-robot.jpg';
 import { site } from '../config/site';
 
 const skillsList = [
@@ -25,11 +25,20 @@ const Hero = () => {
       id="about"
       className="relative min-h-screen flex items-center px-6 md:px-12 pt-14 pb-16 overflow-hidden bg-brand-black"
     >
-      {/* Lightweight CSS 3D background (depth layers + mouse parallax, no WebGL) */}
-      <Hero3DScene />
+      {/* Robotic background image (static, optimized ~98 kB) */}
+      <img
+        src={heroRobot}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+      />
 
-      {/* Gradient overlay for depth behind the floating forms */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-black/50 via-brand-black/20 to-brand-black/55 pointer-events-none" />
+      {/* Dark overlays — fade the photo back and keep text readable */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-brand-black/90 via-brand-black/65 to-brand-black/95 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-brand-black/85 via-brand-black/45 to-transparent pointer-events-none" />
 
       {/* Fade-to-black mask at bottom — smooth scroll transition */}
       <div className="absolute bottom-0 left-0 right-0 h-40 z-30 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent pointer-events-none" />
